@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 20968
+  controlID: 201
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -47,9 +47,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 326.6667
+    x: 327.33334
     y: 78.66667
-    width: 996
+    width: 995.33325
     height: 518.6667
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -35.35666, y: 27.283335, z: -15.332886}
+    m_Target: {x: -33.47822, y: 23.665964, z: -7.2039375}
     speed: 2
-    m_Value: {x: -35.35666, y: 27.283335, z: -15.332886}
+    m_Value: {x: -33.47822, y: 23.665964, z: -7.2039375}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -695,13 +695,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.12818575, y: 0.6944469, z: -0.12762138, w: -0.69702625}
+    m_Target: {x: -0.15105492, y: 0.68877405, z: -0.15352482, w: -0.6939312}
     speed: 2
-    m_Value: {x: -0.12800553, y: 0.69485843, z: -0.1276971, w: -0.6960459}
+    m_Value: {x: -0.15018709, y: 0.68812376, z: -0.15265602, w: -0.6932717}
   m_Size:
-    m_Target: 8.571789
+    m_Target: 4.0426216
     speed: 2
-    m_Value: 8.202669
+    m_Value: 4.042629
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 20969
+  controlID: 202
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 20970
+  controlID: 203
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -804,7 +804,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 326.66666
+    width: 327.33334
     height: 544.6667
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
@@ -836,7 +836,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 78.66667
-    width: 325.66666
+    width: 326.33334
     height: 518.6667
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 494.3333}
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 24fbffff
@@ -894,9 +894,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 326.66666
+    x: 327.33334
     y: 0
-    width: 998
+    width: 997.33325
     height: 544.6667
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -1026,14 +1026,14 @@ MonoBehaviour:
     y: 544.6667
     width: 1324.6666
     height: 375.3333
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 10}
+  m_MinSize: {x: 101, y: 126}
+  m_MaxSize: {x: 4001, y: 4026}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 10}
   - {fileID: 11}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1098,9 +1098,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2eb30000
-    m_LastClickedID: 45870
-    m_ExpandedIDs: 0000000082b1000084b1000086b1000088b1000000ca9a3b
+    m_SelectedIDs: c2b40000
+    m_LastClickedID: 46274
+    m_ExpandedIDs: 0000000014b3000016b3000018b300001ab3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1129,7 +1129,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 06b10000
     m_LastClickedID: 45318
-    m_ExpandedIDs: 0000000082b1000084b1000086b1000088b1000000ca9a3b
+    m_ExpandedIDs: 0000000014b3000016b3000018b300001ab3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
