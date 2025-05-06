@@ -820,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hamster Character
       objectReference: {fileID: 0}
+    - target: {fileID: 7252408302187967751, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
+      propertyPath: isDebug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
