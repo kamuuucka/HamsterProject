@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class CharacterDeath : MonoBehaviour
 {
     [Tooltip("Events that will happen on character's death.")]
-    [SerializeField] private UnityEvent onCharacterDeath;
+    [SerializeField] private UnityEvent<Transform> onCharacterDeath;
     [Tooltip("Layers that will cause character's death.")]
     [SerializeField] private LayerMask deathLayers;
     [Tooltip("Height at which character will die.")][Range(0,-10)]
@@ -29,16 +29,16 @@ public class CharacterDeath : MonoBehaviour
     {
         if (dieByHeight && !_cm.Grounded && transform.position.y <= deadlyHeight)
         {
-            onCharacterDeath?.Invoke();
+            onCharacterDeath?.Invoke(transform);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isDebug) Debug.Log("Colliding!");
+        if (isDebug) SuperDebug.Log("Colliding!");
         if ((deathLayers.value & (1 << other.gameObject.layer)) != 0)
         {
-            onCharacterDeath?.Invoke();
+            onCharacterDeath?.Invoke(transform);
         }
     }
     
