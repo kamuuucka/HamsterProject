@@ -40,12 +40,15 @@ namespace Prototypes.Character
             {
                 groundCheck = transform;
             }
+            
         }
         
 
         private void Update()
         {
             _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            
+            if (isDebug) SuperDebug.LogBool(_isGrounded);
             
             ResetVelocity();
             

@@ -28,7 +28,7 @@ public class AutoSave
             _config = ScriptableObject.CreateInstance<AutoSaveConfig>();
             AssetDatabase.CreateAsset(_config, ConfigPath);
             AssetDatabase.SaveAssets();
-            Debug.Log("Created new AutoSaveConfig at " + ConfigPath);
+            SuperDebug.Log("Created new AutoSaveConfig at " + ConfigPath, DebugColor.orange);
         }
     }
 
@@ -50,13 +50,13 @@ public class AutoSave
     private static void SaveProject()
     {
         if (_config.showDebugMessages)
-            Debug.Log("Auto-saving project at " + DateTime.Now.ToString("HH:mm:ss"));
+            SuperDebug.Log("Auto-saving project at " + DateTime.Now.ToString("HH:mm:ss"), DebugColor.orange);
 
         AssetDatabase.SaveAssets();
         EditorApplication.ExecuteMenuItem("File/Save Project");
 
         if (_config.showDebugMessages)
-            Debug.Log("Auto-save completed");
+            SuperDebug.Log("Auto-save completed", DebugColor.orange);
     }
 
     /// <summary>
