@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 7303108240366449143}
   - component: {fileID: 7939175697845973639}
   - component: {fileID: 7252408302187967751}
+  - component: {fileID: 4937743725838097915}
+  - component: {fileID: 4940681158836200606}
   m_Layer: 0
   m_Name: hamster_prototype
   m_TagString: Untagged
@@ -117,6 +119,50 @@ MonoBehaviour:
     m_Bits: 64
   isDebug: 0
   showGroundSphere: 0
+--- !u!114 &4937743725838097915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635379351367577729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816f31f8fcfe5434ca6b9055a8cd1e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCharacterDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4940681158836200606}
+        m_TargetAssemblyTypeName: EventDebug, Assembly-CSharp
+        m_MethodName: ShowText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  deathLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  deadlyHeight: -1.92
+--- !u!114 &4940681158836200606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635379351367577729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc9e67844c3c463bac172e421ebaaea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Character died :c
 --- !u!1 &4685840919143810592
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ namespace Prototypes.Character
         [Tooltip("Enables the gizmo for the ground checking sphere.")]
         [SerializeField] private bool showGroundSphere;
 
+        public bool Grounded => _isGrounded;
+        
         private CharacterController _controller;
         private Vector3 _velocity;
         private bool _isGrounded;
@@ -42,7 +44,6 @@ namespace Prototypes.Character
             }
             
         }
-        
 
         private void Update()
         {
