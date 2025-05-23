@@ -315,7 +315,7 @@ MonoBehaviour:
   collidingTags:
   - Player
   onButtonInteraction: 0
-  buttonToUse: 0
+  buttonToUse: 101
   isDebug: 1
 --- !u!4 &746622905
 Transform:
@@ -1446,6 +1446,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6334558295458641923, guid: 509f8665c37bd46819bb7b99c59ba086, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500918692033819063, guid: 509f8665c37bd46819bb7b99c59ba086, type: 3}
+      propertyPath: buttonToUse
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500918692033819063, guid: 509f8665c37bd46819bb7b99c59ba086, type: 3}
+      propertyPath: onButtonInteraction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8324150214979059126, guid: 509f8665c37bd46819bb7b99c59ba086, type: 3}

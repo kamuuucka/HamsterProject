@@ -1,17 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DoEventOnTriggerCollision : MonoBehaviour
 {
+    [Description("Remember that this object you want to collide with needs to have the collision set to trigger!\n" +
+                 "Collision can be on a child of the object.", messageType = MessageType.Warning)] 
     [SerializeField] private UnityEvent onCollisionEvents;
     [SerializeField] private List<string> collidingTags;
     [SerializeField] private bool onButtonInteraction;
-    [SerializeField] private KeyCode buttonToUse;
+    [SerializeField, HideInInspector] private KeyCode buttonToUse = KeyCode.E;
     [Space(10)]
-    [SerializeField] private bool isDebug;
+    [SerializeField, HideInInspector] private bool isDebug;
 
     private bool _isColliding;
 
