@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody))]
 public class DoEventOnTriggerCollision : MonoBehaviour
 {
     [SerializeField] private UnityEvent onCollisionEvents;
@@ -28,6 +29,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
         {
             if (other.CompareTag(tag))
             {
+                if (isDebug) SuperDebug.Log("Colliding");
                 _isColliding = true;
             }
         }
@@ -36,7 +38,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _isColliding = false;
-        SuperDebug.Log("Removing collider!");
+        if (isDebug) SuperDebug.Log("Removing collider!");
     }
 
     private void Update()
