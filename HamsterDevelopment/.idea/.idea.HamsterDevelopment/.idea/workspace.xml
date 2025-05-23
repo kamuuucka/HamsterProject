@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="84c33982-3d44-4937-9998-ae37ddf0bf04" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamsterDevelopment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamsterDevelopment/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/AutoSave.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/AutoSave.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/ScriptableObjects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/ScriptableObjects/AutoSaveConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/ScriptableObjects/AutoSaveConfig.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prototypes/Mechanics/DoEventOnTriggerCollision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prototypes/Mechanics/DoEventOnTriggerCollision.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/CustomEditors/DoEventOnTriggerCollisionEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/Drawers/DescriptionDrawer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Prototypes/Character/CharacterDeath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Prototypes/Character/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tools/DebugLogText.cs" root0="FORCE_HIGHLIGHTING" />
@@ -116,7 +121,7 @@
       <workItem from="1745407501220" duration="1371000" />
       <workItem from="1745570283966" duration="3606000" />
       <workItem from="1746183965208" duration="7426000" />
-      <workItem from="1747415457309" duration="6885000" />
+      <workItem from="1747415457309" duration="13301000" />
     </task>
     <servers />
   </component>
