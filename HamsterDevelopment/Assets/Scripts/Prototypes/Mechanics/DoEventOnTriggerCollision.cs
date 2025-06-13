@@ -1,30 +1,33 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DoEventOnTriggerCollision : MonoBehaviour
 {
-    [Description("Remember that this object you want to collide with needs to have the collision set to trigger!\n" +
-                 "Collision can be on a child of the object.", messageType = MessageType.Warning)] 
+    [Description("Remember to set the collision to trigger!\n" +
+                 "Collision can be on a child of this object.", messageType = MessageType.Warning)] 
+    [Tooltip("Events that will happen after the trigger will collide.")]
     [SerializeField] private UnityEvent onCollisionEvents;
-    [SerializeField] private List<string> collidingTags;
+    [SerializeField] private List<string> collidingTags = new List<string>(){"Untagged"};
     [SerializeField] private bool onButtonInteraction;
     [SerializeField, HideInInspector] private KeyCode buttonToUse = KeyCode.E;
     [Space(10)]
     [SerializeField, HideInInspector] private bool isDebug;
 
     private bool _isColliding;
+    private Rigidbody _rb;
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
+        _rb.isKinematic = true;
+        _rb.useGravity = false;
+        
         if (onButtonInteraction)
         {
-            SuperDebug.Log($"{buttonToUse}");
+            if (isDebug) SuperDebug.Log($"Button to interact: {buttonToUse}");
         }
     }
 
@@ -34,7 +37,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
         {
             if (other.CompareTag(tag))
             {
-                if (isDebug) SuperDebug.Log("Colliding");
+                if (isDebug) SuperDebug.Log($"Colliding with {other.gameObject.name}");
                 _isColliding = true;
             }
         }
@@ -43,7 +46,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _isColliding = false;
-        if (isDebug) SuperDebug.Log("Removing collider!");
+        if (isDebug) SuperDebug.Log("Does not collide anymore.");
     }
 
     private void Update()
@@ -54,7 +57,6 @@ public class DoEventOnTriggerCollision : MonoBehaviour
             {
                 if (Input.GetKeyUp(buttonToUse))
                 {
-                    if (isDebug) SuperDebug.Log("Triggered!");
                     onCollisionEvents?.Invoke();
                 }
             }
