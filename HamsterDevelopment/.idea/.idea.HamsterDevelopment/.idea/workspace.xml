@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="84c33982-3d44-4937-9998-ae37ddf0bf04" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamsterDevelopment/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamsterDevelopment/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tests/KamaTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tests/KamaTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/CustomEditors/DoEventOnTriggerCollisionEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/CustomEditors/DoEventOnTriggerCollisionEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prototypes/Mechanics/DoEventOnTriggerCollision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Prototypes/Mechanics/DoEventOnTriggerCollision.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +20,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/CustomEditors/DoEventOnTriggerCollisionEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/Drawers/DescriptionDrawer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/ExtraClasses/TagHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Prototypes/Character/CharacterDeath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Prototypes/Character/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tools/DebugLogText.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,7 +118,7 @@
       <workItem from="1745407501220" duration="1371000" />
       <workItem from="1745570283966" duration="3606000" />
       <workItem from="1746183965208" duration="7426000" />
-      <workItem from="1747415457309" duration="15243000" />
+      <workItem from="1747415457309" duration="15802000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
                  "Collision can be on a child of this object.", messageType = MessageType.Warning)] 
     [Tooltip("Events that will happen after the trigger will collide.")]
     [SerializeField] private UnityEvent onCollisionEvents;
-    [SerializeField] private List<string> collidingTags;
+    [SerializeField] private List<string> collidingTags = new List<string>(){"Untagged"};
     [SerializeField] private bool onButtonInteraction;
     [SerializeField, HideInInspector] private KeyCode buttonToUse = KeyCode.E;
     [Space(10)]
