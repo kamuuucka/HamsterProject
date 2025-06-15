@@ -28,6 +28,8 @@ namespace Prototypes.Character
         [Tooltip("Enables the gizmo for the ground checking sphere.")]
         [SerializeField] private bool showGroundSphere;
 
+        public bool Grounded => _isGrounded;
+        
         private CharacterController _controller;
         private Vector3 _velocity;
         private bool _isGrounded;
@@ -40,23 +42,25 @@ namespace Prototypes.Character
             {
                 groundCheck = transform;
             }
+            
         }
-        
 
         private void Update()
         {
             _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
             
+            if (isDebug) SuperDebug.Log($"{transform.position}");
+            
             ResetVelocity();
             
-            MoveCharacter();
+            if (_controller.enabled) MoveCharacter();
             
             if (_isGrounded && Input.GetButtonDown("Jump"))
             {
                 _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
             
-            ApplyGravity();
+            if (_controller.enabled) ApplyGravity();
         }
 
         private void MoveCharacter()

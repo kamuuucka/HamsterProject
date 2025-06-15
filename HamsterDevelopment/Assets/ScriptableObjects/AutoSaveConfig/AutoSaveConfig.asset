@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AutoSaveConfig
   m_EditorClassIdentifier: 
   enableAutoSaving: 0
-  savingInterval: 15
-  showDebugMessages: 1
+  savingInterval: 20
+  showDebugMessages: 0
