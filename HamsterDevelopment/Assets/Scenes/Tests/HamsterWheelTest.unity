@@ -478,6 +478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215d0a5aa4da79f478a4786ab410af31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &657107680 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5825526463562977806, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+  m_PrefabInstance: {fileID: 780698110888026856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &969352670
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +715,11 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!224 &1037716891 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2876602691409524863, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+  m_PrefabInstance: {fileID: 780698110888026856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1412240450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -849,6 +859,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 122.47475, y: 100}
   m_EdgeRadius: 0
+--- !u!114 &1613532703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613532697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f502a4ee252e0654f845dfb94f2b9a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1883246417
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,10 +951,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_HamsterWheel
       objectReference: {fileID: 0}
+    - target: {fileID: 1275985081135053868, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+      propertyPath: disableOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2571270054227473416, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+      propertyPath: isDebug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2571270054227473416, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 196907626}
+    - target: {fileID: 3871234640621880747, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+      propertyPath: startPointLeft
+      value: 
+      objectReference: {fileID: 657107680}
+    - target: {fileID: 3871234640621880747, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+      propertyPath: startPointRight
+      value: 
+      objectReference: {fileID: 1037716891}
     - target: {fileID: 4018827212913911586, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
       propertyPath: m_Name
       value: StartPoint Right
@@ -1003,6 +1041,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 955966550923147694, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1613532701}
+    - targetCorrespondingSourceObject: {fileID: 955966550923147694, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1613532703}
   m_SourcePrefab: {fileID: 100100000, guid: 6badcd4e051f6e04e9cd31e840c98992, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
