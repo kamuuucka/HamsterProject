@@ -1,3 +1,4 @@
+using System;
 using Prototypes.Character;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,8 +10,13 @@ public class HamsterwheelScript : MonoBehaviour
     private GameObject Player;
 
     [SerializeField] private Transform attachPoint;
-    
-    
+    [SerializeField] private GameObject miniGameOverlay;
+
+    private void Start()
+    {
+        miniGameOverlay.SetActive(false);
+    }
+
 
     // Update is called once per frame
     // void Update()
@@ -46,5 +52,10 @@ public class HamsterwheelScript : MonoBehaviour
         player.transform.position = attachPoint.position;
         player.transform.localRotation = attachPoint.localRotation;
         player.GetCharacterController().enabled = false;
+    }
+
+    public void EnableMiniGame()
+    {
+        miniGameOverlay.SetActive(true);
     }
 }
