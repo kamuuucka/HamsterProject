@@ -11,7 +11,7 @@ public class Minigame : MonoBehaviour
     [SerializeField] private GameObject step;
     [SerializeField] private GameObject startPointLeft;
     [SerializeField] private GameObject startPointRight;
-    [SerializeField] private GameObject target;
+    [SerializeField] private MiniGameFinish finish;
 
     private bool left;
 
@@ -25,7 +25,6 @@ public class Minigame : MonoBehaviour
     void Start()
     {
         StartCoroutine(spawnStep());
-        targetPosition = target.GetComponent<RectTransform>().localPosition.y;
         Debug.Log(targetPosition);
     }
 
@@ -42,6 +41,12 @@ public class Minigame : MonoBehaviour
         }
     }
 
+    public void CollisionDetected(MiniGameFinish finish)
+    {
+        SuperDebug.Log("Collision detected");
+    }
+
+    private int i;
     IEnumerator spawnStep()
     {
         while (true)
@@ -49,11 +54,15 @@ public class Minigame : MonoBehaviour
             if(left)
             {
                 GameObject newstep = Instantiate(step, startPointLeft.transform);
+                newstep.name = $"Step{i}";
+                i++;
                 LeftSteps.Add(newstep);
             }
             else
             {
                 GameObject newstep = Instantiate(step, startPointRight.transform);
+                newstep.name = $"Step{i}";
+                i++;
                 RightSteps.Add(newstep);
             }
 

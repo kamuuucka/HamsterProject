@@ -6,12 +6,6 @@ using UnityEngine;
 public class HamsterWheel : MonoBehaviour
 {
     [SerializeField] private Transform attachPoint;
-    [SerializeField] private GameObject miniGameOverlay;
-
-    private void Start()
-    {
-        miniGameOverlay.SetActive(false);
-    }
 
     /// <summary>
     /// Attaches the object with the CharacterMovement script to the AttachPoint.
