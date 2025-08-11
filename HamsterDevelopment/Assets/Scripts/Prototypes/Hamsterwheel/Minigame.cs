@@ -11,39 +11,54 @@ public class Minigame : MonoBehaviour
     [SerializeField] private GameObject step;
     [SerializeField] private GameObject startPointLeft;
     [SerializeField] private GameObject startPointRight;
-    [SerializeField] private MiniGameFinish finish;
+    
+    [SerializeField] List<GameObject> _objects;
+    private bool _left;
+    
 
-    private bool left;
-
-    private float targetPosition;
-    private float leway = 50;
-
-    public List<GameObject> LeftSteps = new List<GameObject>();
-    public List<GameObject> RightSteps = new List<GameObject>();
+    [SerializeField]private List<GameObject> _leftSteps = new();
+    [SerializeField]private List<GameObject> _rightSteps = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(spawnStep());
-        Debug.Log(targetPosition);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A) && _objects.Count > 0 && IsPartOfList(_objects, _leftSteps))
         {
-            CheckStep(LeftSteps);
+            SuperDebug.Log("SUPER A!");
+            var common = FindCommonObject(_objects, _leftSteps);
+            _leftSteps.Remove(common);
+            _objects.Remove(common);
+            Destroy(common);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        
+        if (Input.GetKeyDown(KeyCode.D) && _objects.Count > 0 && IsPartOfList(_objects, _rightSteps))
         {
-            CheckStep(RightSteps);
+            SuperDebug.Log("SUPER D!");
+            var common = FindCommonObject(_objects, _rightSteps);
+            _rightSteps.Remove(common);
+            _objects.Remove(common);
+            Destroy(common);
         }
     }
 
-    public void CollisionDetected(MiniGameFinish finish)
+    public void CollisionDetected(Collider2D other)
     {
-        SuperDebug.Log("Collision detected");
+        _objects.Add(other.gameObject);
+    }
+
+    public void CollisionEnded(Collider2D other)
+    {
+        if (_objects.Contains(other.gameObject))
+        {
+            _objects.Remove(other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 
     private int i;
@@ -51,36 +66,36 @@ public class Minigame : MonoBehaviour
     {
         while (true)
         {
-            if(left)
+            if(_left)
             {
                 GameObject newstep = Instantiate(step, startPointLeft.transform);
                 newstep.name = $"Step{i}";
                 i++;
-                LeftSteps.Add(newstep);
+                _leftSteps.Add(newstep);
             }
             else
             {
                 GameObject newstep = Instantiate(step, startPointRight.transform);
                 newstep.name = $"Step{i}";
                 i++;
-                RightSteps.Add(newstep);
+                _rightSteps.Add(newstep);
             }
 
-            left = !left;
+            _left = !_left;
             yield return new WaitForSeconds(interval);
         }
     }
 
-    private void CheckStep(List<GameObject> StepList)
+    private bool IsPartOfList(List<GameObject> list1, List<GameObject> list2)
     {
-        float posY = transform.InverseTransformPoint(StepList.First().transform.position).y;
-        Debug.Log(StepList.First().GetComponent<RectTransform>().localPosition.y + targetPosition);
-        if (StepList.First().GetComponent<RectTransform>().localPosition.y + targetPosition < leway && StepList.First().GetComponent<RectTransform>().localPosition.y + targetPosition > -leway)
-        {
-            Debug.Log("Success!");
-        }
-        Destroy(StepList.First());
-        StepList.RemoveAt(0);
+        return list2.Any(list1.Contains);
     }
+
+    private GameObject FindCommonObject(List<GameObject> list1, List<GameObject> list2)
+    {
+        var commonList = list1.Intersect(list2);
+        return commonList.ToList()[0];
+    }
+
 }
 

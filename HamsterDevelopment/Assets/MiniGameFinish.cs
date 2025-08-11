@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGameFinish : MonoBehaviour
@@ -12,6 +13,11 @@ public class MiniGameFinish : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _minigame.CollisionDetected(this);
+        _minigame.CollisionDetected(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _minigame.CollisionEnded(other);
     }
 }
