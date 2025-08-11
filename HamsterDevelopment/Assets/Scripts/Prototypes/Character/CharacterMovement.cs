@@ -96,5 +96,10 @@ namespace Prototypes.Character
                 Gizmos.DrawWireSphere(groundCheck.position, groundSphereRadius);
             }
         }
+
+        public CharacterController GetCharacterController()
+        {
+            return _controller;
+        }
     }
 }
