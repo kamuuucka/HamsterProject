@@ -2,17 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Prototypes.Mechanics.HamsterWheel
 {
-    public class MiniGame : MonoBehaviour
+    /// <summary>
+    /// Mini game played when player interacts with the hamster wheel. 
+    /// </summary>
+    public class HwMiniGame : MonoBehaviour
     {
         #region Exposed Variables
 
+        [Header("Mini Game Setup")]
+        [Tooltip("Points required to finish the mini game.")]
+        [SerializeField] private int requiredPoints = 1;
+        [Tooltip("What will happen when player gets all the points.")]
+        [SerializeField] private UnityEvent doAfterFinished;
+        
+        [Header("Spawning Steps")][Space(5)]
+        [Tooltip("Time (in seconds) between each step.")]
         [SerializeField] private float intervalSeconds = 1;
+        [Tooltip("Size of the pool containing all the steps in the game. In short: how many steps will be in the game at the same time.")]
         [SerializeField] private int poolSize = 10;
+        
+        [Header("Necessary Objects")][Space(5)]
+        [Tooltip("Steps to spawn.")]
         [SerializeField] private GameObject step;
+        [Tooltip("Starting point for the left lane.")]
         [SerializeField] private Transform startPointLeft;
+        [Tooltip("Starting point for the right lane.")]
         [SerializeField] private Transform startPointRight;
 
         #endregion
@@ -24,6 +42,7 @@ namespace Prototypes.Mechanics.HamsterWheel
         private readonly List<GameObject> _rightSteps = new();
         private bool _left;
         private int _i;
+        private int _currentPoints;
 
         #endregion
 
@@ -37,6 +56,8 @@ namespace Prototypes.Mechanics.HamsterWheel
     
         void Start()
         {
+            CheckNecessaryObjects();
+            
             CreatePool(_leftPool, startPointLeft);
             CreatePool(_rightPool, startPointRight);
         
@@ -48,11 +69,21 @@ namespace Prototypes.Mechanics.HamsterWheel
             if (Input.GetKeyDown(KeyCode.A) && _activeSteps.Count > 0 && IsPartOfList(_activeSteps, _leftSteps))
             {
                 HandleStepPressed(_leftSteps, _leftPool);
+                CheckIfFinished();
             }
         
             if (Input.GetKeyDown(KeyCode.D) && _activeSteps.Count > 0 && IsPartOfList(_activeSteps, _rightSteps))
             {
                 HandleStepPressed(_rightSteps, _rightPool);
+                CheckIfFinished();
+            }
+        }
+
+        private void CheckIfFinished()
+        {
+            if (_currentPoints >= requiredPoints)
+            {
+                doAfterFinished?.Invoke();
             }
         }
         
@@ -95,6 +126,7 @@ namespace Prototypes.Mechanics.HamsterWheel
             steps.Remove(common);
             _activeSteps.Remove(common);
             ReturnToPool(common, pool);
+            _currentPoints++;
         }
 
         /// <summary>
@@ -172,6 +204,27 @@ namespace Prototypes.Mechanics.HamsterWheel
         {
             var commonList = list1.Intersect(list2);
             return commonList.FirstOrDefault();
+        }
+
+        private void CheckNecessaryObjects()
+        {
+            if (step == null)
+            {
+                SuperDebug.LogError("Step assignment missing");
+                return;
+            }
+
+            if (startPointLeft == null)
+            {
+                SuperDebug.LogError("No spawn point for the left lane!");
+                return;
+            }
+
+            if (startPointRight == null)
+            {
+                SuperDebug.LogError("No spawn point for the right lane!");
+                return;
+            }
         }
 
     }
