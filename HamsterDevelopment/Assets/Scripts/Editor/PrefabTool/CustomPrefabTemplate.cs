@@ -1,10 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class MyWindow : EditorWindow
+/// <summary>
+/// Class responsible for creating prefabs using the template used by the team.
+/// </summary>
+public class CustomPrefabTemplate : EditorWindow
 {
     [MenuItem("GameObject/Prefab Templates/Empty", false, 0)]
     public static void CreateEmpty()
@@ -17,31 +18,31 @@ public class MyWindow : EditorWindow
     {
         InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cube"));
     }
-    
+
     [MenuItem("GameObject/Prefab Templates/Sphere", false, 2)]
     public static void CreateSphere()
     {
         InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Sphere"));
     }
-    
+
     [MenuItem("GameObject/Prefab Templates/Capsule", false, 3)]
     public static void CreateCapsule()
     {
         InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Capsule"));
     }
-    
+
     [MenuItem("GameObject/Prefab Templates/Cylinder", false, 4)]
     public static void CreateCylinder()
     {
         InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cylinder"));
     }
-    
+
     [MenuItem("GameObject/Prefab Templates/Plane", false, 5)]
     public static void CreatePlane()
     {
         InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Plane"));
     }
-    
+
     [MenuItem("GameObject/Prefab Templates/Quad", false, 6)]
     public static void CreateQuad()
     {
@@ -64,6 +65,5 @@ public class MyWindow : EditorWindow
         GameObject newPrimitive = GameObject.CreatePrimitive(desiredPrimitive);
         newPrimitive.transform.position = Vector3.zero;
         newPrimitive.transform.SetParent(model.transform);
-        
     }
 }
