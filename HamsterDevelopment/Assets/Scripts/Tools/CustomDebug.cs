@@ -41,6 +41,18 @@ public static class SuperDebug
     }
     
     /// <summary>
+    /// Log the error message with a specific color. If no color used, it will be red.
+    /// </summary>
+    /// <param name="message">Text of your message.</param>
+    /// <param name="color">DebugColor that you want to use.</param>
+    /// <param name="callerFilePath">Path to the file that called this method.</param>
+    public static void LogError(string message, DebugColor color = DebugColor.red, [CallerFilePath] string callerFilePath = "")
+    {
+        var logColor = GetHashValue(color);
+        Debug.LogError($"{ShowScriptName(callerFilePath)}<color={logColor}>{message}");
+    }
+    
+    /// <summary>
     /// Method used to display the name of the file that called any of the methods in this script.
     /// </summary>
     /// <param name="callerFilePath">Path to the file that called this method.</param>
