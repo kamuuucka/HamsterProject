@@ -35,17 +35,42 @@ public class MyWindow : EditorWindow
 
     private void InstantiatePrefab()
     {
+        GameObject newObject = new GameObject(_myString);
+        newObject.transform.position = Vector3.zero;
+        GameObject model = new GameObject("Model");
+        model.transform.position = Vector3.zero;
+        model.transform.SetParent(newObject.transform);
+        GameObject newPrimitive = null;
         switch (_index)
         {
             case 0:
-            {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = Vector3.zero;
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 break;
-            }
+            case 1:
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                break;
+            case 2:
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                break;
+            case 3:
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                break;
+            case 4:
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                break;
+            case 5:
+                newPrimitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                break;
             default:
                 SuperDebug.Log("WRONG!");
                 break;
         }
+
+        if (newPrimitive != null)
+        {
+            newPrimitive.transform.position = Vector3.zero;
+            newPrimitive.transform.SetParent(model.transform);
+        }
+      
     }
 }
