@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,43 +11,43 @@ public class CustomPrefabTemplate : EditorWindow
     [MenuItem("GameObject/Prefab Templates/Empty", false, 0)]
     public static void CreateEmpty()
     {
-        InstantiatePrefabTemplate();
+        FocusAndRename(InstantiatePrefabTemplate());
     }
 
     [MenuItem("GameObject/Prefab Templates/Cube", false, 1)]
     public static void CreateCube()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cube"));
+        FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cube")));
     }
 
     [MenuItem("GameObject/Prefab Templates/Sphere", false, 2)]
     public static void CreateSphere()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Sphere"));
+        FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Sphere")));
     }
 
     [MenuItem("GameObject/Prefab Templates/Capsule", false, 3)]
     public static void CreateCapsule()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Capsule"));
+       FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Capsule")));
     }
 
     [MenuItem("GameObject/Prefab Templates/Cylinder", false, 4)]
     public static void CreateCylinder()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cylinder"));
+        FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Cylinder")));
     }
 
     [MenuItem("GameObject/Prefab Templates/Plane", false, 5)]
     public static void CreatePlane()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Plane"));
+        FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Plane")));
     }
 
     [MenuItem("GameObject/Prefab Templates/Quad", false, 6)]
     public static void CreateQuad()
     {
-        InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Quad"));
+        FocusAndRename(InstantiatePrefab((PrimitiveType)Enum.Parse(typeof(PrimitiveType), "Quad")));
     }
 
     private static GameObject InstantiatePrefabTemplate(string name = "Prefab")
@@ -56,14 +57,33 @@ public class CustomPrefabTemplate : EditorWindow
         GameObject model = new GameObject("Model");
         model.transform.position = Vector3.zero;
         model.transform.SetParent(newObject.transform);
-        return model;
+        return newObject;
     }
 
-    private static void InstantiatePrefab(PrimitiveType desiredPrimitive)
+    private static GameObject InstantiatePrefab(PrimitiveType desiredPrimitive)
     {
-        var model = InstantiatePrefabTemplate(desiredPrimitive.ToString());
+        GameObject newObject = InstantiatePrefabTemplate(desiredPrimitive.ToString());
+        GameObject model = newObject.transform.Find("Model").gameObject;
         GameObject newPrimitive = GameObject.CreatePrimitive(desiredPrimitive);
+        Undo.RegisterCreatedObjectUndo(newPrimitive, "Create Primitive");
         newPrimitive.transform.position = Vector3.zero;
         newPrimitive.transform.SetParent(model.transform);
+        return newObject;
+    }
+
+    private static void FocusAndRename(GameObject go)
+    {
+        Selection.activeGameObject = go;
+        
+        EditorApplication.delayCall += () =>
+        {
+            if (Selection.activeGameObject == go)
+            {
+                var hierarchyType = typeof(EditorWindow).Assembly.GetType("UnityEditor.SceneHierarchyWindow");
+                var window = EditorWindow.GetWindow(hierarchyType);
+                var renameMethod = hierarchyType.GetMethod("RenameGO", BindingFlags.Instance | BindingFlags.NonPublic);
+                renameMethod?.Invoke(window, null);
+            }
+        };
     }
 }
