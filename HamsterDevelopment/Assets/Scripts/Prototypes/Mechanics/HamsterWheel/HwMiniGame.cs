@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Prototypes.Mechanics.HamsterWheel
 {
@@ -22,6 +24,8 @@ namespace Prototypes.Mechanics.HamsterWheel
         [Header("Spawning Steps")][Space(5)]
         [Tooltip("Time (in seconds) between each step.")]
         [SerializeField] private float intervalSeconds = 1;
+        [Tooltip("How much should the interval decrease when the step is pressed correctly.")]
+        [SerializeField] private float decreaseIntervalSeconds = 0.1f;
         [Tooltip("Size of the pool containing all the steps in the game. In short: how many steps will be in the game at the same time.")]
         [SerializeField] private int poolSize = 10;
         
@@ -32,6 +36,9 @@ namespace Prototypes.Mechanics.HamsterWheel
         [SerializeField] private Transform startPointLeft;
         [Tooltip("Starting point for the right lane.")]
         [SerializeField] private Transform startPointRight;
+        
+        [Space(10)]
+        [SerializeField] private bool isDebug;
 
         #endregion
 
@@ -43,6 +50,7 @@ namespace Prototypes.Mechanics.HamsterWheel
         private bool _left;
         private int _i;
         private int _currentPoints;
+        private float _actualInterval;
 
         #endregion
 
@@ -56,6 +64,8 @@ namespace Prototypes.Mechanics.HamsterWheel
     
         void Start()
         {
+            _actualInterval =  intervalSeconds;
+            
             CheckNecessaryObjects();
             
             CreatePool(_leftPool, startPointLeft);
@@ -93,6 +103,11 @@ namespace Prototypes.Mechanics.HamsterWheel
         public void CollisionDetected(Collider2D other)
         {
             _activeSteps.Add(other.gameObject);
+            if (isDebug)
+            {
+                SuperDebug.Log($"Interval: {_actualInterval}");
+                other.gameObject.GetComponent<Image>().color = Color.blue;
+            }
         }
 
         /// <summary>
@@ -101,13 +116,17 @@ namespace Prototypes.Mechanics.HamsterWheel
         public void CollisionEnded(Collider2D other)
         {
             if (!_activeSteps.Contains(other.gameObject)) return;
+            if (isDebug) other.gameObject.GetComponent<Image>().color = Color.yellow;
+            _actualInterval = Math.Min(intervalSeconds, _actualInterval + decreaseIntervalSeconds);
             if (_leftSteps.Contains(other.gameObject))
             {
+                _activeSteps.Remove(other.gameObject);
                 _leftSteps.Remove(other.gameObject);
                 ReturnToPool(other.gameObject, _leftPool);
             }
             else if (_rightSteps.Contains(other.gameObject))
             {
+                _activeSteps.Remove(other.gameObject);
                 _rightSteps.Remove(other.gameObject);
                 ReturnToPool(other.gameObject, _rightPool);
             }
@@ -126,6 +145,7 @@ namespace Prototypes.Mechanics.HamsterWheel
             steps.Remove(common);
             _activeSteps.Remove(common);
             ReturnToPool(common, pool);
+            _actualInterval -= decreaseIntervalSeconds;
             _currentPoints++;
         }
 
@@ -179,7 +199,7 @@ namespace Prototypes.Mechanics.HamsterWheel
             
                 _left = !_left;
             
-                yield return new WaitForSeconds(intervalSeconds);
+                yield return new WaitForSeconds(_actualInterval);
             }
         }
 
