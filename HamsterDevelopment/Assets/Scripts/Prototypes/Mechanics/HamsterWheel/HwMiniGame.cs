@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -39,6 +40,8 @@ namespace Prototypes.Mechanics.HamsterWheel
         
         [Space(10)]
         [SerializeField] private bool isDebug;
+
+        [SerializeField] private TMP_Text debugPoints;
 
         #endregion
 
@@ -116,8 +119,17 @@ namespace Prototypes.Mechanics.HamsterWheel
         public void CollisionEnded(Collider2D other)
         {
             if (!_activeSteps.Contains(other.gameObject)) return;
-            if (isDebug) other.gameObject.GetComponent<Image>().color = Color.yellow;
+            if (isDebug)
+            {
+                other.gameObject.GetComponent<Image>().color = Color.yellow;
+                debugPoints.text = $"Points: {_currentPoints}";
+            }
             _actualInterval = Math.Min(intervalSeconds, _actualInterval + decreaseIntervalSeconds);
+            if (_currentPoints > 0)
+            {
+                _currentPoints--;
+            }
+            
             if (_leftSteps.Contains(other.gameObject))
             {
                 _activeSteps.Remove(other.gameObject);
@@ -147,6 +159,7 @@ namespace Prototypes.Mechanics.HamsterWheel
             ReturnToPool(common, pool);
             _actualInterval -= decreaseIntervalSeconds;
             _currentPoints++;
+            if (isDebug) debugPoints.text = $"Points: {_currentPoints}";
         }
 
         /// <summary>
