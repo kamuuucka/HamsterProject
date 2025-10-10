@@ -119,27 +119,40 @@ namespace Prototypes.Mechanics.HamsterWheel
         public void CollisionEnded(Collider2D other)
         {
             if (!_activeSteps.Contains(other.gameObject)) return;
-            if (isDebug)
-            {
-                other.gameObject.GetComponent<Image>().color = Color.yellow;
-                debugPoints.text = $"Points: {_currentPoints}";
-            }
+            
             _actualInterval = Math.Min(intervalSeconds, _actualInterval + decreaseIntervalSeconds);
             if (_currentPoints > 0)
             {
                 _currentPoints--;
             }
             
+            if (isDebug)
+            {
+                other.gameObject.GetComponent<Image>().color = Color.yellow;
+                debugPoints.text = $"Points: {_currentPoints}";
+            }
+            
+            if (isDebug)
+            {
+                SuperDebug.Log($"Active steps: {_activeSteps.Count}");
+                SuperDebug.Log($"Left steps: {_leftSteps.Count}");
+                SuperDebug.Log($"Right steps: {_rightSteps.Count}");
+            }
+            
             if (_leftSteps.Contains(other.gameObject))
             {
                 _activeSteps.Remove(other.gameObject);
                 _leftSteps.Remove(other.gameObject);
+                ReturnToPool(_rightSteps[0], _rightPool);
+                _rightSteps.RemoveAt(0);
                 ReturnToPool(other.gameObject, _leftPool);
             }
             else if (_rightSteps.Contains(other.gameObject))
             {
                 _activeSteps.Remove(other.gameObject);
                 _rightSteps.Remove(other.gameObject);
+                ReturnToPool(_leftSteps[0], _leftPool);
+                _leftSteps.RemoveAt(0);
                 ReturnToPool(other.gameObject, _rightPool);
             }
         }
