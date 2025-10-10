@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4160513498610275574}
   - component: {fileID: 39170234083408368}
   m_Layer: 0
-  m_Name: PaintCan
+  m_Name: PaintCanOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
