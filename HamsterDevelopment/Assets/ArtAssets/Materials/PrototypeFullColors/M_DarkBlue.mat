@@ -51,6 +51,7 @@ Material:
     m_Floats:
     - _CullMode: 0
     - _CullModeForward: 0
+    - _DoubleSidedEnable: 1
     m_Colors:
     - _BaseColor: {r: 0.05345905, g: 0.18704525, b: 1, a: 1}
     - _Color: {r: 0.05345902, g: 0.18704522, b: 1, a: 1}
