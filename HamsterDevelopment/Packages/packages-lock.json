@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.kamuuucka.hierarchy-tool": {
+      "version": "https://github.com/kamuuucka/com.kamuuucka.hierarchy-tool.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2d038e9653143aa87f92f3d834ef88c4a768b90c"
+    },
     "com.unity.burst": {
       "version": "1.8.25",
       "depth": 2,
