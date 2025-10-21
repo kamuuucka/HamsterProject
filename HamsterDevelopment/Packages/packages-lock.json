@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.kamuuucka.hierarchy-tool": {
-      "version": "https://github.com/kamuuucka/com.kamuuucka.hierarchy-tool.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "2d038e9653143aa87f92f3d834ef88c4a768b90c"
-    },
     "com.unity.burst": {
       "version": "1.8.25",
       "depth": 2,
@@ -28,7 +21,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "2.9.3",
+      "version": "2.7.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -232,7 +225,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.9",
+      "version": "1.8.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -262,7 +255,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.7",
+      "version": "1.9.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
