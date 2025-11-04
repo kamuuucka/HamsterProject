@@ -35,14 +35,14 @@ public class CharacterDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isDebug) SuperDebug.Log("Colliding!");
         if ((deathLayers.value & (1 << other.gameObject.layer)) != 0)
         {
+            if (isDebug) SuperDebug.Log("I'm dead!");
             onCharacterDeath?.Invoke(transform);
         }
     }
     
-    // private void OnDrawGizmosSelected()
+    // private void OnDrawGizmosSelected💀
     // {
     //     if (showDeadlyHeight)
     //     {

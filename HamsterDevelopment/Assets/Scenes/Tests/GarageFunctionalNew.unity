@@ -3529,6 +3529,10 @@ PrefabInstance:
       value: hamster_prototype
       objectReference: {fileID: 0}
     - target: {fileID: 4937743725838097915, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937743725838097915, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: dieByHeight
       value: 0
       objectReference: {fileID: 0}
