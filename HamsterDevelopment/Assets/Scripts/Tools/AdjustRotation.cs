@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,13 @@ public class AdjustRotation : MonoBehaviour
 {
     [Tooltip("New rotation for the object.")]
     [SerializeField] private Quaternion newRotation;
+
+    private Quaternion _originalRotation;
+
+    private void Start()
+    {
+        _originalRotation = transform.rotation;
+    }
 
     /// <summary>
     /// Sets the new local rotation. (Does take the parent rotation into the consideration.)
@@ -22,6 +30,11 @@ public class AdjustRotation : MonoBehaviour
     public void SetNewRotation()
     {
         transform.rotation = newRotation;
+    }
+
+    public void GoBackToOriginalRotation()
+    {
+        transform.rotation = _originalRotation;
     }
     
     
