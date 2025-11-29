@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// The script responsible for teleporting specific objects to specific destinations. 
+/// </summary>
 public class Teleportation : MonoBehaviour
 {
     public static Teleportation Instance { get; private set; }
@@ -30,6 +33,9 @@ public class Teleportation : MonoBehaviour
         StartCoroutine(TeleportAfterFrame(objectToTeleport, destination, useRotation, isDebug));
     }
 
+    /// <summary>
+    /// Teleport after frame to avoid it not working :)
+    /// </summary>
     private IEnumerator TeleportAfterFrame(Transform objectToTeleport, Transform destination, bool useRotation, bool isDebug)
     {
         // Disable physics/controllers interfering

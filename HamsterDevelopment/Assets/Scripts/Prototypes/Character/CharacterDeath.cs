@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Prototypes.Character;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,14 +22,18 @@ public class CharacterDeath : MonoBehaviour
         }
     }
     
-
-
-
+    /// <summary>
+    /// Make sure that the player respawns on the most recently save SpawnPoint.
+    /// </summary>
     private void Respawn()
     {
         Teleportation.Instance.Teleport(transform, mostRecentSpawnPoint);
         if (isDebug) SuperDebug.Log("respawn?");
     }
 
+    /// <summary>
+    /// Set the most recent SpawnPoint that the player should use.
+    /// </summary>
+    /// <param name="newSpawnPoint">The Transform where the player will respawn after death.</param>
     public void SetMostRecentSpawnPoint(Transform newSpawnPoint) => mostRecentSpawnPoint = newSpawnPoint;
 }
