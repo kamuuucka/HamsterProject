@@ -1,25 +1,36 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Teleportation : MonoBehaviour
 {
-    [SerializeField] private bool isDebug;
-    private Transform _destination;
+    public static Teleportation Instance { get; private set; }
 
-    public void SetDestination(Transform destination) => _destination = destination;
-
-    public void Teleport(Transform objectToTeleport)
+    private void Awake()
     {
-        if (_destination == null)
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            SuperDebug.LogError("Another instance of Teleportation already exists!");
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void Teleport(Transform objectToTeleport, Transform destination, bool useRotation = false, bool isDebug = false)
+    {
+        if (destination == null)
         {
             Debug.LogError("Destination not set!");
             return;
         }
 
-        StartCoroutine(TeleportAfterFrame(objectToTeleport));
+        StartCoroutine(TeleportAfterFrame(objectToTeleport, destination, useRotation, isDebug));
     }
 
-    private IEnumerator TeleportAfterFrame(Transform objectToTeleport)
+    private IEnumerator TeleportAfterFrame(Transform objectToTeleport, Transform destination, bool useRotation, bool isDebug)
     {
         // Disable physics/controllers interfering
         var controller = objectToTeleport.GetComponent<CharacterController>();
@@ -28,11 +39,11 @@ public class Teleportation : MonoBehaviour
         yield return new WaitForEndOfFrame(); // Wait for all updates
 
         // Apply teleport
-        objectToTeleport.position = _destination.position;
-        objectToTeleport.rotation = _destination.rotation;
+        objectToTeleport.position = destination.position;
+        if (useRotation) objectToTeleport.rotation = destination.rotation;
 
         if (isDebug) 
-            SuperDebug.Log($"Teleported {objectToTeleport} to {_destination.position}");
+            SuperDebug.Log($"Teleported {objectToTeleport} to {destination.position}");
 
         // Re-enable components
         if (controller != null) controller.enabled = true;
