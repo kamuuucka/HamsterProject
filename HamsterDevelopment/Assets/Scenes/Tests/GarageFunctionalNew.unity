@@ -241,6 +241,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3323113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.116764
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.08
+      objectReference: {fileID: 0}
     - target: {fileID: 3096733828810035887, guid: 518003433d201c3488c8bae821040637, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.849
@@ -284,22 +300,6 @@ PrefabInstance:
     - target: {fileID: 8630844932896383919, guid: 518003433d201c3488c8bae821040637, type: 3}
       propertyPath: m_Name
       value: Ruler
-      objectReference: {fileID: 0}
-    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3323113
-      objectReference: {fileID: 0}
-    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 7.116764
-      objectReference: {fileID: 0}
-    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4625043582415225374, guid: dfccd31bd22bb7e4c88b2a6c4c84d1aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.08
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -513,73 +513,13 @@ PrefabInstance:
       value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 191000044}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 354605289}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.5
-      objectReference: {fileID: 0}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2091444053}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
       value: TubeTeleportation
@@ -1506,73 +1446,13 @@ PrefabInstance:
       value: -0.461
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 2091444053}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 354605289}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.63
-      objectReference: {fileID: 0}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 191000044}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
       value: TubeTeleportation (1)
@@ -2633,140 +2513,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1026760217}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 354605289}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1026760218}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 354605289}
     - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 354605289}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
---- !u!4 &1026760217 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8359120118169564164, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-  m_PrefabInstance: {fileID: 1026760215}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1026760218 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 198993122787358596, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-  m_PrefabInstance: {fileID: 1026760215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031738962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,17 +2873,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465ad58460b90bf4c94a72351c8be408, type: 3}
---- !u!114 &1279850143 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4494681914051749764, guid: 03da7671c58a84372aed1d4c379db56b, type: 3}
-  m_PrefabInstance: {fileID: 767584976}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1134a69613a41d6b8f9e69cf6a4ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1317044146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3542,15 +3289,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.497673
+      value: -32.57097
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.89
+      value: 18.579483
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.1849
+      value: -53.95
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3931,140 +3678,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1587822189}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 354605289}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1587822190}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 354605289}
     - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 354605289}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
---- !u!4 &1587822189 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8359120118169564164, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-  m_PrefabInstance: {fileID: 1587822187}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1587822190 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 198993122787358596, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-  m_PrefabInstance: {fileID: 1587822187}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1617822022
 GameObject:
   m_ObjectHideFlags: 0
@@ -4329,6 +3954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377836903676494127, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
+      propertyPath: m_Name
+      value: TubeTeleportationBottom
+      objectReference: {fileID: 0}
     - target: {fileID: 843017839813304018, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: m_Name
       value: Tube_TopShelf
@@ -4374,125 +4003,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 354605289}
+    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1753969458}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 354605289}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985205914399513333, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1753969459}
+      objectReference: {fileID: 354605289}
     - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 354605289}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894708336835467637, guid: 0d0422fb33e0db04483e745351d96be8, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1753969459}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4539,11 +4064,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1759293997 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6293957763662672272, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-  m_PrefabInstance: {fileID: 7428546110287144500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1799323890
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,11 +4638,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3251785577913544240, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
   m_PrefabInstance: {fileID: 545376406}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2140434627 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2421768336682643984, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-  m_PrefabInstance: {fileID: 7428546110287144500}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &568608846451394272
 PrefabInstance:
@@ -6745,65 +6260,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1759293997}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
       objectReference: {fileID: 354605289}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 735417965399252833, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4832021505267540988, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
       propertyPath: m_Name
       value: BookWithTube
@@ -6849,65 +6308,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1279850143}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 2140434627}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
       objectReference: {fileID: 354605289}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004880365914758369, guid: bb1d3493b08a7194ba051052e8a8ba55, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

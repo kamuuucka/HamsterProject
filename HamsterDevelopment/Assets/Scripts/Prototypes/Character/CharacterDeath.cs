@@ -1,4 +1,3 @@
-using System;
 using Prototypes.Character;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,30 +7,10 @@ public class CharacterDeath : MonoBehaviour
 {
     [Tooltip("Events that will happen on character's death.")]
     [SerializeField] private UnityEvent<Transform> onCharacterDeath;
+    [SerializeField] private Transform mostRecentSpawnPoint;
     [Tooltip("Layers that will cause character's death.")]
     [SerializeField] private LayerMask deathLayers;
-    // [Tooltip("Height at which character will die.")][Range(0,-10)]
-    // [SerializeField] private float deadlyHeight = -5f;
-    // [Tooltip("Set if the character should die by height.")]
-    // [SerializeField] private bool dieByHeight = true;
-    // [Space(10)]
     [SerializeField] private bool isDebug;
-    // [Tooltip("Show the gizmo for the deadly height value.")]
-    // [SerializeField] private bool showDeadlyHeight;
-    // private CharacterMovement _cm;
-
-    private void Start()
-    {
-        //_cm = GetComponent<CharacterMovement>();
-    }
-
-    private void Update()
-    {
-        // if (dieByHeight && !_cm.Grounded && transform.position.y <= deadlyHeight)
-        // {
-        //     onCharacterDeath?.Invoke(transform);
-        // }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,16 +18,22 @@ public class CharacterDeath : MonoBehaviour
         {
             if (isDebug) SuperDebug.Log("I'm dead!");
             onCharacterDeath?.Invoke(transform);
+            Respawn();
         }
     }
     
-    // private void OnDrawGizmosSelected💀
-    // {
-    //     if (showDeadlyHeight)
-    //     {
-    //         Gizmos.color = Color.red;
-    //         var position = transform.position;
-    //         Gizmos.DrawSphere(new Vector3(position.x, deadlyHeight, position.z), 0.2f);
-    //     }
-    // }
+    /// <summary>
+    /// Make sure that the player respawns on the most recently save SpawnPoint.
+    /// </summary>
+    private void Respawn()
+    {
+        Teleportation.Instance.Teleport(transform, mostRecentSpawnPoint);
+        if (isDebug) SuperDebug.Log("respawn?");
+    }
+
+    /// <summary>
+    /// Set the most recent SpawnPoint that the player should use.
+    /// </summary>
+    /// <param name="newSpawnPoint">The Transform where the player will respawn after death.</param>
+    public void SetMostRecentSpawnPoint(Transform newSpawnPoint) => mostRecentSpawnPoint = newSpawnPoint;
 }

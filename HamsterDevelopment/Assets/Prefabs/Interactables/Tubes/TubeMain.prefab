@@ -96,6 +96,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -117,6 +119,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -209,24 +212,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8357872685086589615}
-    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 198993122787358596}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
-      value: TubeTeleportation (1)
+      value: TubeTeleportationTop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -238,9 +229,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3251785577913544240, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
   m_PrefabInstance: {fileID: 1498730079458381500}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8357872685086589615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+--- !u!4 &8359120118169564164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
   m_PrefabInstance: {fileID: 1498730079458381500}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7066138283509697852
@@ -299,15 +290,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8359120118169564164}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
-      value: TubeTeleportation
+      value: TubeTeleportationBottom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+--- !u!4 &198993122787358596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+  m_PrefabInstance: {fileID: 7066138283509697852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5705883249413464844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3251785577913544240, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
