@@ -520,14 +520,6 @@ PrefabInstance:
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 2091444053}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
       value: TubeTeleportation
@@ -1461,14 +1453,6 @@ PrefabInstance:
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 191000044}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -7.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6975231829210970808, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.63
-      objectReference: {fileID: 0}
     - target: {fileID: 7435917964295638035, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_Name
       value: TubeTeleportation (1)
@@ -3305,15 +3289,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6
+      value: -32.57097
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.47
+      value: 18.579483
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.64
+      value: -53.95
       objectReference: {fileID: 0}
     - target: {fileID: 7303108240366449143, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: m_LocalRotation.w
