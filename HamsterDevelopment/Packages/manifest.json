@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
     "com.kamuuucka.hierarchy-tool": "https://github.com/kamuuucka/com.kamuuucka.hierarchy-tool.git",
     "com.unity.cinemachine": "3.1.3",
     "com.unity.collab-proxy": "2.9.3",
     "com.unity.feature.development": "1.0.2",
+    "com.unity.inputsystem": "1.14.2",
     "com.unity.multiplayer.center": "1.0.0",
     "com.unity.render-pipelines.high-definition": "17.2.0",
     "com.unity.timeline": "1.8.9",
