@@ -66,13 +66,9 @@ namespace Prototypes.Character
         [Range(0f, 1f)]
         [Tooltip("Variable jump height. If you let go of the jump button before reaching the peak of the jump, the velocity gets multiplied with this amount.\n\n0 = full stop to upwards velocity\n1 = no special changes to upwards velocity")]
         [SerializeField] private float shortJumpMult = .5f;
-
-
         [Range(0f, 2f)]
         [Tooltip("Extra bit of gravity multiplier when falling. Should be subtle")]
         [SerializeField] private float bonusGravity = 1;
-
-
         [Range(0.1f, 30f)]
         [Tooltip("Max fall speed. Only applies for falling here, but realistically, it should apply in all directions. \nAccording to quora, a hamster can reach a terminal velocity on the order of 15-25 m/s")]
         [SerializeField] private float terminalVelocity = 20f;
@@ -103,6 +99,8 @@ namespace Prototypes.Character
 
         private Vector2 _moveInput;
         private InputAction _jumpInput;
+
+        private CharacterPivot _pivot;
 
         private void Awake()
         {
@@ -144,7 +142,7 @@ namespace Prototypes.Character
         {
             // Automatically normalizes
             _moveInput = InputSystem.actions["Move"].ReadValue<Vector2>();
-            // TODO: Take camera rotation into account
+            RotateInputToCamera();
 
             _jumpInput = InputSystem.actions["Jump"];
         }
@@ -242,6 +240,7 @@ namespace Prototypes.Character
         }
 
         // Knowing how fast the player can rotate around
+        //TODO?: Have different turn speeds in air and on ground?
         private float GetTurnSpeed(float pCurrentVelocity)
         {
             if (!enableMinTurnSpeed) return maxTurnSpeed;
@@ -280,6 +279,7 @@ namespace Prototypes.Character
         private void ApplyGravity()
         {
             // What if gravity changes? (like during climbing)
+            // What if this part doesn't happen if the player is grounded?
             float g = gravity;
 
             // Bonus gravity if falling down
@@ -314,6 +314,32 @@ namespace Prototypes.Character
                 _velocity.y = -2f;
             }
         }
+
+
+        private void RotateInputToCamera()
+        {
+            Vector3 cameraForward = GetCameraForward();
+
+            // Looking forward = 0. Angle is in radians
+            float angle = -Mathf.Atan2(cameraForward.x, cameraForward.z);
+
+            // Rotating a vector by an angle: (cos(a) * x - sin(a) * y, cos(a) * y + sin(a) * x)
+            float x = Mathf.Cos(angle) * _moveInput.x - Mathf.Sin(angle) * _moveInput.y;
+            float y = Mathf.Cos(angle) * _moveInput.y + Mathf.Sin(angle) * _moveInput.x;
+
+            _moveInput.x = x;
+            _moveInput.y = y;
+
+        }
+
+        private Vector3 GetCameraForward()
+        {
+            // TODO: Make better system for this!
+            if (_pivot == null) TryGetComponent(out _pivot);
+
+            return _pivot == null ? Vector3.forward : _pivot.PivotForward;
+        }
+
         
         private void OnDrawGizmosSelected()
         {
