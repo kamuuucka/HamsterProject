@@ -8,7 +8,7 @@ namespace Prototypes.Character
     public class CharacterMovement : MonoBehaviour
     {
 
-        [Header("Brams version")]
+        [Header("Horizontal Movement")]
 
         [Header("Choices for Control or Acceleration")]
 
@@ -26,9 +26,6 @@ namespace Prototypes.Character
 
 
         [Header("Speed change parameters")]
-        [Tooltip("THIS IS PROBABLY USELESS Should Unity smoothen the transition from no input to input? \nThis is a huge difference for acceleration. Having this disabled basically means there's an extra build-up and build-down for acceleration and things may not work properly")]
-        [SerializeField] private bool useRawInputs;
-
 
         [Tooltip("Maximum horizontal velocity")]
         [SerializeField] private float maxHorVelocity;
@@ -49,6 +46,7 @@ namespace Prototypes.Character
 
 
         [Header("Rotation speed parameters")]
+
         [Tooltip("Do you want the player to rotate slower at lower velocity?")]
         [SerializeField] private bool enableMinTurnSpeed;
         [Tooltip("Amount of degrees per frame the player can rotate when standing still")]
@@ -57,16 +55,32 @@ namespace Prototypes.Character
         [SerializeField] private float maxTurnSpeed;
 
 
-        [Header("Kama's stuff")]
+        [Header("Jump related")]
 
-        [Header("Movement Settings")]
-        [Range(3f,10f)][Tooltip("The speed that the character moves with.")]
-        [SerializeField] private float moveSpeed = 5f;
+
         [Tooltip("The modifier used to fake gravity. -9.81 is the default setting that is supposed to fake the real world gravity.")]
         [SerializeField] private float gravity = -9.81f;
         [Range(0.5f,5f)][Tooltip("The height of the jump. 1 is 1 unity cube.")]
         [SerializeField] private float jumpHeight = 2f;
-    
+
+        [Range(0f, 1f)]
+        [Tooltip("Variable jump height. If you let go of the jump button before reaching the peak of the jump, the velocity gets multiplied with this amount.\n\n0 = full stop to upwards velocity\n1 = no special changes to upwards velocity")]
+        [SerializeField] private float shortJumpMult = .5f;
+
+
+        [Range(0f, 2f)]
+        [Tooltip("Extra bit of gravity multiplier when falling. Should be subtle")]
+        [SerializeField] private float bonusGravity = 1;
+
+
+        [Range(0.1f, 30f)]
+        [Tooltip("Max fall speed. Only applies for falling here, but realistically, it should apply in all directions. \nAccording to quora, a hamster can reach a terminal velocity on the order of 15-25 m/s")]
+        [SerializeField] private float terminalVelocity = 20f;
+
+
+
+        [Header("Other")]
+
         [Header("Ground Check")]
         [Tooltip("Transform that is treated as a ground check. Please position at the character's feet.")]
         [SerializeField] private Transform groundCheck;
@@ -88,6 +102,7 @@ namespace Prototypes.Character
         private bool _isGrounded;
 
         private Vector2 _moveInput;
+        private InputAction _jumpInput;
 
         private void Awake()
         {
@@ -106,28 +121,37 @@ namespace Prototypes.Character
             
             if (isDebug) SuperDebug.Log($"{transform.position}");
             
+            // ??????
             ResetVelocity();
+
+            // Only knowing what buttons are pressed. Needs to be in Update
             CheckInputs();
-            if (_controller.enabled) CalculateMovementv2(); // MoveCharacter();
-            
-            if (_isGrounded && Input.GetButtonDown("Jump"))
-            {
-                _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
-            
-            if (_controller.enabled) ApplyGravity();
+
+            // Calculating horizontal movement
+            CalculateMovement(); 
+
+            // Calculating vertical movement
+            CheckJump();
+
+            ApplyGravity();
+
+            if (_controller.enabled) ApplyMovement();
+
+
         }
 
         private void CheckInputs()
         {
             // Automatically normalizes
             _moveInput = InputSystem.actions["Move"].ReadValue<Vector2>();
-            //Debug.Log(_moveInput);
-            // Take camera rotation into account?
+            // TODO: Take camera rotation into account
+
+            _jumpInput = InputSystem.actions["Jump"];
         }
 
 
-        private void CalculateMovementv2()
+        // Horizontal movement
+        private void CalculateMovement()
         {
             // Using the right numbers for air and ground
             float acceleration = _isGrounded ? groundAcceleration : airAcceleration;
@@ -149,14 +173,6 @@ namespace Prototypes.Character
 
                 speedChange = CalculateSpeedChange(forwardVector, horVel, desiredVelocity, acceleration, control);
 
-                /*float forwardDot = Vector2.Dot(_moveInput, isLookForward ? forwardVector : horVel);
-
-                // If input is forward and the input going forward is bigger than current speed
-                //if (forwardDot > 0 && forwardDot * maxHorVelocity > horVel.magnitude) speedChange = acceleration;
-                // If input is forward and desired new speed is bigger than the current speed
-                if (forwardDot > 0 && desiredVelocity.magnitude > horVel.magnitude) speedChange = acceleration;
-                else speedChange = control;*/
-
 
                 // Rotation
                 if (_moveInput.magnitude != 0 && forwardVector != _moveInput.normalized)
@@ -170,8 +186,6 @@ namespace Prototypes.Character
                 speedChange = brake;
             }
 
-            Debug.Log("Speed change: "+speedChange);
-
             Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange);
 
             _velocity.x = a.x;
@@ -180,6 +194,7 @@ namespace Prototypes.Character
 
         }
 
+        // Me when I use 40 lines of code for 7 real lines of code:
         private float CalculateSpeedChange(Vector2 pForwardVector, Vector2 pHorVel, Vector2 pDesiredVelocity, float pAcceleration, float pControl)
         {
             // Direction
@@ -207,7 +222,7 @@ namespace Prototypes.Character
             // This system doesn't account for if you want to use the length of the input for one direction
             // and length of speed for another
 
-            Debug.Log("Forward dot: " + forwardDot*maxHorVelocity + " (" + forwardDot + ").\nValue it's compared with: " + compareToValue);
+            //Debug.Log("Forward dot: " + forwardDot*maxHorVelocity + " (" + forwardDot + ").\nValue it's compared with: " + compareToValue);
 
             // If length of forward is smaller than required threshold
             if (forwardDot * maxHorVelocity <= compareToValue) return pControl;
@@ -226,86 +241,7 @@ namespace Prototypes.Character
             return pAcceleration;
         }
 
-
-
-        // Probably not using this. It uses the old input system
-        private void CalculateMovement()
-        {
-            // Using the right numbers for air and ground
-            float acceleration = _isGrounded ? groundAcceleration : airAcceleration;
-            float control = _isGrounded ? groundControl : airControl;
-            float brake = _isGrounded ? groundBrake : airBrake;
-
-
-            // When the camera can rotate, add the camera's rotation to this
-            /*Vector2 moveInput = useRawInputs ? 
-                new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) : 
-                new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            if (moveInput.magnitude > 1) moveInput.Normalize();*/
-            Vector2 desiredVelocity = _moveInput * maxHorVelocity;
-            Vector2 moveOutput = Vector2.zero;
-
-
-            if (_moveInput.magnitude != 0)
-            {
-                Vector2 forwardVector = new Vector2(transform.forward.x, transform.forward.z).normalized;
-                Vector2 rightVector = new Vector2(transform.right.x, transform.right.z).normalized;
-
-                // How much does the input go forward?
-                float forwardDot = Vector2.Dot(_moveInput, forwardVector);
-                // How much does the input go to the side?
-                float rightDot = Vector2.Dot(_moveInput, rightVector);
-
-                // If move input matches foward direction, use acceleration
-                if (forwardDot > 0)
-                {
-                    moveOutput += forwardDot * acceleration * forwardVector;
-                }
-                // Any input direction that isn't forward uses control
-                else moveOutput += forwardDot * control * forwardVector;
-                moveOutput += rightDot * control * rightVector;
-
-
-                // FIX THIS: DOESN'T WORK AFTER ROTATING
-                // Relevant when switching direction while moving
-                if (Mathf.Abs(moveOutput.x) <= 0.001f && _moveInput.x == 0)
-                {
-                    moveOutput.x = brake;
-                }
-                if (Mathf.Abs(moveOutput.y) <= 0.001f && _moveInput.y == 0)
-                {
-                    moveOutput.y = brake;
-                }
-
-                // Capping speed
-                if (moveOutput.magnitude > maxHorVelocity)
-                {
-                    moveOutput = moveOutput.normalized * maxHorVelocity;
-                }
-
-                // Does the character need to rotate?
-                if (_moveInput.magnitude != 0 && forwardVector != _moveInput.normalized)
-                {
-                    float desiredRotation = Vector2.SignedAngle(forwardVector, _moveInput);
-                    transform.Rotate(-Mathf.MoveTowards(0, desiredRotation, GetTurnSpeed(moveOutput.magnitude)) * Vector3.up);
-                }
-
-            }
-            else
-            {
-                // No input = brake
-                moveOutput += new Vector2(_velocity.x, _velocity.z).normalized * brake;
-            }
-
-
-            Debug.Log(Vector2.SignedAngle(Vector2.up, moveOutput));
-
-            _velocity.x = Mathf.MoveTowards(_velocity.x, desiredVelocity.x, Mathf.Abs(moveOutput.x));
-            _velocity.z = Mathf.MoveTowards(_velocity.z, desiredVelocity.y, Mathf.Abs(moveOutput.y));
-            
-
-        }
-
+        // Knowing how fast the player can rotate around
         private float GetTurnSpeed(float pCurrentVelocity)
         {
             if (!enableMinTurnSpeed) return maxTurnSpeed;
@@ -315,24 +251,62 @@ namespace Prototypes.Character
         }
 
 
-        // Definitely not using this. This is Kama's version
-        private void MoveCharacter()
+
+        private void CheckJump()
         {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            
-            Vector3 move = transform.right * horizontal + transform.forward * vertical;
-            
-            _controller.Move(move * (moveSpeed * Time.deltaTime));
+            // TODO: Come up with convenient way to disable jumping
+            bool isJumping = _jumpInput.triggered;
+
+            float newValue = _velocity.y;
+
+            // Jumping
+            if (_isGrounded && isJumping)
+            {
+                // This way, the character jumps exactly [jumpHeight] units high
+                newValue = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+            // Variable jump height
+            if (_jumpInput.WasReleasedThisFrame() && _velocity.y > 0)
+            {
+                newValue = _velocity.y * shortJumpMult;
+            }
+
+            _velocity.y = newValue;
         }
+
+
 
         private void ApplyGravity()
         {
-            _velocity.y += gravity * Time.deltaTime;
-            
+            // What if gravity changes? (like during climbing)
+            float g = gravity;
+
+            // Bonus gravity if falling down
+            if (_velocity.y < 0) g *= bonusGravity;
+
+
+            // Increase for velocity is linear, so we just add gravity's acceleration since last frame
+            g *= Time.deltaTime;
+
+            // Alternative way of enforcing terminal velocity?
+            //if (g > _velocity.y + terminalVelocity) g = _velocity.y + terminalVelocity;
+
+            // Increase falling speed.
+            _velocity.y += g;
+
+            // Terminal velocity (Easy and robust method)
+            if (_velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
+
+        }
+
+        private void ApplyMovement()
+        {
             _controller.Move(_velocity * Time.deltaTime);
         }
 
+
+        // This creates a nasty slowdown effect upon landing. This is because the grounded sphere extends far below the player
         private void ResetVelocity()
         {
             if (_isGrounded && _velocity.y < 0)
@@ -348,6 +322,8 @@ namespace Prototypes.Character
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(groundCheck.position, groundSphereRadius);
             }
+
+            //TODO?: Add Input and Velocity arrows?
         }
 
         public CharacterController GetCharacterController()
