@@ -1,3 +1,4 @@
+using MyBox;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -7,6 +8,17 @@ namespace Prototypes.Character
     [RequireComponent(typeof(CharacterController))]
     public class CharacterMovement : MonoBehaviour
     {
+        enum ControlState
+        {
+            Grounded, Airborne, Special
+        }
+        [Tooltip("State machine (debug)")]
+        [SerializeField, ReadOnly] ControlState controlState = ControlState.Grounded;
+
+        [DisplayInspector]
+        [Tooltip("Attaching something here means using it. It gets removed if you stop using it")]
+        [SerializeField] private CharacterMovementValues specialValues;
+
 
         [Header("Horizontal Movement")]
 
@@ -25,52 +37,96 @@ namespace Prototypes.Character
         [SerializeField] private bool useVelocityDirectional;
 
 
-        [Header("Speed change parameters")]
+        [Header("Movement parameters")]
+
+        [Tooltip("Should movement be disabled? This means that this script doesn't look at move inputs while true")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableMovement = false;
+        [Tooltip("Actual maximum horizontal velocity that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _maxHorVelocity;
+        [Tooltip("Acceleration for direction player is facing")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _acceleration;
+        [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _control;
+        [Tooltip("Deceleration when player doesn't input movement")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _brake;
 
         [Tooltip("Maximum horizontal velocity")]
         [SerializeField] private float maxHorVelocity;
-
         [Tooltip("Acceleration for direction player is facing")]
         [SerializeField] private float groundAcceleration;
         [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
         [SerializeField] private float groundControl;
-        [Tooltip("Deceleration when player doens't input movement")]
+        [Tooltip("Deceleration when player doesn't input movement")]
         [SerializeField] private float groundBrake;
 
         [Tooltip("Acceleration for direction player is facing")]
         [SerializeField] private float airAcceleration;
         [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
         [SerializeField] private float airControl;
-        [Tooltip("Deceleration when player doens't input movement")]
+        [Tooltip("Deceleration when player doesn't input movement")]
         [SerializeField] private float airBrake;
 
 
-        [Header("Rotation speed parameters")]
+        [Header("Turn parameters")]
 
         [Tooltip("Do you want the player to rotate slower at lower velocity?")]
         [SerializeField] private bool enableMinTurnSpeed;
         [Tooltip("Amount of degrees per frame the player can rotate when standing still")]
-        [SerializeField] private float minTurnSpeed;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _minTurnSpeed = 1f;
         [Tooltip("Amount of degrees per frame the player can rotate when moving at top speed")]
-        [SerializeField] private float maxTurnSpeed;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _maxTurnSpeed = 7.5f;
+
+        [Tooltip("Amount of degrees per frame the player can rotate when standing still on the ground")]
+        [SerializeField] private float minTurnSpeedGround = 1f;
+        [Tooltip("Amount of degrees per frame the player can rotate when moving at top speed on the ground")]
+        [SerializeField] private float maxTurnSpeedGround = 7.5f;
+        [Tooltip("Amount of degrees per frame the player can rotate when airborne without horizontal speed")]
+        [SerializeField] private float minTurnSpeedAir = 1f;
+        [Tooltip("Amount of degrees per frame the player can rotate when airborne with top horizontal speed")]
+        [SerializeField] private float maxTurnSpeedAir = 3f;
 
 
-        [Header("Jump related")]
+        [Header("Jump parameters")]
+
+        [Tooltip("Should jumping be disabled? This means there's no way to jump")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableJumping = false;
+        [Tooltip("Actual jump height parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _jumpHeight = 2f;
+        [Tooltip("Actual short jump multiplier parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _shortJumpMult = .5f;
+        [Tooltip("Actual jump buffer parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _jumpBuffer = .2f;
+        [Tooltip("Actual coyote time parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _coyoteTime = .2f;
+
+        [Range(0.5f,5f)] [Tooltip("The height of the jump. 1 is 1 unity cube.")]
+        [SerializeField] private float jumpHeight = 2f;
+        [Range(0f, 1f)] [Tooltip("Variable jump height. If you let go of the jump button before reaching the peak of the jump, the velocity gets multiplied with this amount.\n\n0 = full stop to upwards velocity\n1 = no special changes to upwards velocity")]
+        [SerializeField] private float shortJumpMult = .5f;
+
+        [Range(0f, .5f)] [Tooltip("Not implemented yet!!! When you press jump while still in the air, you'll still jump if you land on the ground within [jumpBuffer] seconds")]
+        [SerializeField] private float jumpBuffer = .2f;
+        [Range(0f, .5f)] [Tooltip("Not implemented yet!!! When you fall off a platform, you can still jump for [coyoteTime] seconds")]
+        [SerializeField] private float coyoteTime = .2f;
+
+
+        [Header("Gravity parameters")]
+
+        [Tooltip("Should gravity be disabled? This makes it so the gravity values aren't used")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableGravity = false;
+        [Tooltip("Actual gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _gravity = -9.81f;
+        [Tooltip("Actual bonus gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _bonusGravity = 1;
+        [Tooltip("Actual terminal velocity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _terminalVelocity = 20f;
 
 
         [Tooltip("The modifier used to fake gravity. -9.81 is the default setting that is supposed to fake the real world gravity.")]
         [SerializeField] private float gravity = -9.81f;
-        [Range(0.5f,5f)][Tooltip("The height of the jump. 1 is 1 unity cube.")]
-        [SerializeField] private float jumpHeight = 2f;
-
-        [Range(0f, 1f)]
-        [Tooltip("Variable jump height. If you let go of the jump button before reaching the peak of the jump, the velocity gets multiplied with this amount.\n\n0 = full stop to upwards velocity\n1 = no special changes to upwards velocity")]
-        [SerializeField] private float shortJumpMult = .5f;
-        [Range(0f, 2f)]
-        [Tooltip("Extra bit of gravity multiplier when falling. Should be subtle")]
+        [Range(0f, 2f)] [Tooltip("Extra bit of gravity multiplier when falling. Should be subtle")]
         [SerializeField] private float bonusGravity = 1;
-        [Range(0.1f, 30f)]
-        [Tooltip("Max fall speed. Only applies for falling here, but realistically, it should apply in all directions. \nAccording to quora, a hamster can reach a terminal velocity on the order of 15-25 m/s")]
+        [Range(0.1f, 30f)] [Tooltip("Max fall speed. Only applies for falling here, but realistically, it should apply in all directions. \nAccording to quora, a hamster can reach a terminal velocity on the order of 15-25 m/s")]
         [SerializeField] private float terminalVelocity = 20f;
 
 
@@ -90,6 +146,10 @@ namespace Prototypes.Character
         [SerializeField] private bool isDebug;
         [Tooltip("Enables the gizmo for the ground checking sphere.")]
         [SerializeField] private bool showGroundSphere;
+        [Tooltip("There's groundAcceleration and airAcceleration, but the value that's currently being used is hidden. Set to true to show them")]
+        [SerializeField] private bool displayActualValues;
+        [Tooltip("Allows you to change the actual values, but the change will only last until the value is loaded again")]
+        [SerializeField] private bool changeActualValues;
 
         public bool Grounded => _isGrounded;
         
@@ -105,17 +165,20 @@ namespace Prototypes.Character
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
-            
             if (groundCheck == null)
             {
                 groundCheck = transform;
             }
+            CheckGrounded();
+            ReloadValues();
             
         }
 
         private void Update()
         {
-            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            CheckGrounded();
+           // _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            //_isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(.5f, .1f, .5f), transform.rotation, groundMask);
             
             if (isDebug) SuperDebug.Log($"{transform.position}");
             
@@ -147,18 +210,31 @@ namespace Prototypes.Character
             _jumpInput = InputSystem.actions["Jump"];
         }
 
+        private void CheckGrounded()
+        {
+            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+
+            // If controlState is the opposite of what it's supposed to be
+            if (controlState == (_isGrounded ? ControlState.Airborne : ControlState.Grounded))
+            {
+                controlState = _isGrounded ? ControlState.Grounded : ControlState.Airborne;
+                SetValuesToGroundedState();
+            }
+
+        }
+
 
         // Horizontal movement
         private void CalculateMovement()
         {
             // Using the right numbers for air and ground
-            float acceleration = _isGrounded ? groundAcceleration : airAcceleration;
-            float control = _isGrounded ? groundControl : airControl;
-            float brake = _isGrounded ? groundBrake : airBrake;
+           /* float tempAcceleration = _isGrounded ? groundAcceleration : airAcceleration;
+            float tempControl = _isGrounded ? groundControl : airControl;
+            float tempBrake = _isGrounded ? groundBrake : airBrake;*/
 
 
             Vector2 horVel = new Vector2(_velocity.x, _velocity.z);
-            Vector2 desiredVelocity = _moveInput * maxHorVelocity;
+            Vector2 desiredVelocity = _moveInput * _maxHorVelocity;
 
             float speedChange;
 
@@ -169,7 +245,7 @@ namespace Prototypes.Character
                 // Looking how much the input direction matches the forward direction
                 Vector2 forwardVector = new Vector2(transform.forward.x, transform.forward.z).normalized;
 
-                speedChange = CalculateSpeedChange(forwardVector, horVel, desiredVelocity, acceleration, control);
+                speedChange = CalculateSpeedChange(forwardVector, horVel, desiredVelocity);
 
 
                 // Rotation
@@ -181,7 +257,7 @@ namespace Prototypes.Character
             }
             else
             {
-                speedChange = brake;
+                speedChange = _brake;
             }
 
             Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange);
@@ -193,7 +269,7 @@ namespace Prototypes.Character
         }
 
         // Me when I use 40 lines of code for 7 real lines of code:
-        private float CalculateSpeedChange(Vector2 pForwardVector, Vector2 pHorVel, Vector2 pDesiredVelocity, float pAcceleration, float pControl)
+        private float CalculateSpeedChange(Vector2 pForwardVector, Vector2 pHorVel, Vector2 pDesiredVelocity)
         {
             // Direction
             // How much does the input direction match the forward direction?
@@ -205,7 +281,7 @@ namespace Prototypes.Character
 
 
             // Include or exclude lower total speeds?
-            if (requireBiggerTotalSpeed && pDesiredVelocity.magnitude < pHorVel.magnitude) return pControl;            
+            if (requireBiggerTotalSpeed && pDesiredVelocity.magnitude < pHorVel.magnitude) return _control;            
 
 
             // Length to compare the forwardDot with
@@ -223,7 +299,7 @@ namespace Prototypes.Character
             //Debug.Log("Forward dot: " + forwardDot*maxHorVelocity + " (" + forwardDot + ").\nValue it's compared with: " + compareToValue);
 
             // If length of forward is smaller than required threshold
-            if (forwardDot * maxHorVelocity <= compareToValue) return pControl;
+            if (forwardDot * _maxHorVelocity <= compareToValue) return _control;
 
 
             // Summary of what's going on:
@@ -236,17 +312,17 @@ namespace Prototypes.Character
             // If current velocity length on chosen direction is bigger, use control
 
 
-            return pAcceleration;
+            return _acceleration;
         }
 
         // Knowing how fast the player can rotate around
-        //TODO?: Have different turn speeds in air and on ground?
         private float GetTurnSpeed(float pCurrentVelocity)
         {
-            if (!enableMinTurnSpeed) return maxTurnSpeed;
+            if (!enableMinTurnSpeed) return _maxTurnSpeed;
 
-            float percent = pCurrentVelocity / maxHorVelocity;
-            return minTurnSpeed + (maxTurnSpeed - minTurnSpeed) * percent;
+            float percent = pCurrentVelocity / _maxHorVelocity;
+
+            return _minTurnSpeed + (_maxTurnSpeed - _minTurnSpeed) * percent;
         }
 
 
@@ -262,13 +338,13 @@ namespace Prototypes.Character
             if (_isGrounded && isJumping)
             {
                 // This way, the character jumps exactly [jumpHeight] units high
-                newValue = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                newValue = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
             }
 
             // Variable jump height
             if (_jumpInput.WasReleasedThisFrame() && _velocity.y > 0)
             {
-                newValue = _velocity.y * shortJumpMult;
+                newValue = _velocity.y * _shortJumpMult;
             }
 
             _velocity.y = newValue;
@@ -278,12 +354,13 @@ namespace Prototypes.Character
 
         private void ApplyGravity()
         {
+            if (_disableGravity) return;
             // What if gravity changes? (like during climbing)
             // What if this part doesn't happen if the player is grounded?
-            float g = gravity;
+            float g = _gravity;
 
             // Bonus gravity if falling down
-            if (_velocity.y < 0) g *= bonusGravity;
+            if (_velocity.y < 0) g *= _bonusGravity;
 
 
             // Increase for velocity is linear, so we just add gravity's acceleration since last frame
@@ -296,7 +373,7 @@ namespace Prototypes.Character
             _velocity.y += g;
 
             // Terminal velocity (Easy and robust method)
-            if (_velocity.y < -terminalVelocity) _velocity.y = -terminalVelocity;
+            if (_velocity.y < -_terminalVelocity) _velocity.y = -_terminalVelocity;
 
         }
 
@@ -340,13 +417,138 @@ namespace Prototypes.Character
             return _pivot == null ? Vector3.forward : _pivot.PivotForward;
         }
 
-        
+
+        public void SetSpecialValues(CharacterMovementValues pValues)
+        {
+            specialValues = pValues;
+            if (!SetValuesToSpecial())
+            {
+                Debug.LogError("Tried setting special values but it's null");
+            }
+        }
+
+        public void RemoveSpecialValues()
+        {
+            specialValues = null;
+            _disableMovement = false;
+            _disableJumping = false;
+            _disableGravity = false;
+            controlState = ControlState.Grounded;
+            SetValuesToGroundedState();
+        }
+
+        [ButtonMethod]
+        private string ReloadValues()
+        {
+            // Returns false if no CharacterMovementValues is attached
+            if (!SetValuesToSpecial()) SetValuesToGroundedState();
+            
+            return "Reloaded values";
+        }
+
+        #region Setting Values
+
+        private bool SetValuesToSpecial()
+        {
+            if (specialValues == null) return false;
+
+            _disableMovement = specialValues.GetDisableMovement();
+            _disableJumping = specialValues.GetDisableJumping();
+            _disableGravity = specialValues.GetDisableGravity();
+            if (specialValues.GetResetVelocity()) _velocity = Vector3.zero;
+
+            controlState = ControlState.Special;
+
+            if (specialValues.GetUseMovementValues()) { SetMovementValuesToSpecial(); }
+            else { SetMovementValuesToGroundedState(); }
+
+            if (specialValues.GetUseTurnValues()) { SetTurnValuesToSpecial(); }
+            else { SetTurnValuesToGroundedState(); }
+
+            if (specialValues.GetUseJumpValues()) { SetJumpValuesToSpecial(); }
+            else { SetJumpValuesToGroundedState(); }
+
+            if (specialValues.GetUseGravityValues()) { SetGravityValuesToSpecial(); }
+            else { SetGravityValuesToGroundedState(); }
+
+            return true;
+        }
+
+        private void SetValuesToGroundedState()
+        {
+            SetMovementValuesToGroundedState();
+            SetTurnValuesToGroundedState();
+            SetJumpValuesToGroundedState();
+            SetGravityValuesToGroundedState();
+        }
+        private void SetMovementValuesToGroundedState()
+        {
+            _maxHorVelocity = maxHorVelocity;
+            _acceleration = _isGrounded ? groundAcceleration : airAcceleration;
+            _control = _isGrounded ? groundControl : airControl;
+            _brake = _isGrounded ? groundBrake : airBrake;
+        }
+        private void SetTurnValuesToGroundedState()
+        {
+            _minTurnSpeed = _isGrounded ? minTurnSpeedGround : minTurnSpeedAir;
+            _maxTurnSpeed = _isGrounded ? maxTurnSpeedGround : maxTurnSpeedAir;
+        }
+        private void SetJumpValuesToGroundedState()
+        {
+            _jumpHeight = jumpHeight;
+            _shortJumpMult = shortJumpMult;
+            _jumpBuffer = jumpBuffer;
+            _coyoteTime = coyoteTime;
+        }
+        private void SetGravityValuesToGroundedState()
+        {
+            _gravity = gravity;
+            _bonusGravity = bonusGravity;
+            _terminalVelocity = terminalVelocity;
+        }
+
+        private void SetMovementValuesToSpecial()
+        {
+            if (specialValues == null) return;
+
+            _maxHorVelocity = specialValues.GetValueMaxHorVelocity();
+            _acceleration = specialValues.GetValueAcceleration();
+            _control = specialValues.GetValueControl();
+            _brake = specialValues.GetValueBrake();
+        }
+        private void SetTurnValuesToSpecial()
+        {
+            if (specialValues == null) return;
+
+            _minTurnSpeed = specialValues.GetValueMinTurnSpeed();
+            _maxTurnSpeed = specialValues.GetValueMaxTurnSpeed();
+        }
+        private void SetJumpValuesToSpecial()
+        {
+            if (specialValues == null) return;
+
+            _jumpHeight = specialValues.GetValueJumpHeight();
+            _shortJumpMult = specialValues.GetValueShortJumpMult();
+            _jumpBuffer = specialValues.GetValueJumpBuffer();
+            _coyoteTime = specialValues.GetValueCoyoteTime();
+        }
+        private void SetGravityValuesToSpecial()
+        {
+            if (specialValues == null) return;
+
+            _gravity = specialValues.GetValueGravity();
+            _bonusGravity = specialValues.GetValueBonusGravity();
+            _terminalVelocity = specialValues.GetValueTerminalVelocity();
+        }
+        #endregion
+
         private void OnDrawGizmosSelected()
         {
             if (showGroundSphere)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(groundCheck.position, groundSphereRadius);
+                //Gizmos.DrawWireCube(groundCheck.position, new Vector3(1, .2f, 1));
             }
 
             //TODO?: Add Input and Velocity arrows?
