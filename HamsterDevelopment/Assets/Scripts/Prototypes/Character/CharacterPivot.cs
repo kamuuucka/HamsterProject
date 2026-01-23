@@ -64,10 +64,11 @@ public class CharacterPivot : MonoBehaviour
 
     private void Update()
     {
-        if (!_useActionAsset && _inputAction.enabled)
+        if ((!_useActionAsset && _inputAction.enabled) || (_useActionAsset && _inputActionAsset.enabled ))
         {
-            Vector2 delta = _inputAction.ReadValue<Vector2>();
-            delta *= Time.deltaTime * _sensitivity;
+            Vector2 delta = _useActionAsset
+                ? _inputActionAsset.FindAction("Look", true).ReadValue<Vector2>()
+                : _inputAction.ReadValue<Vector2>(); delta *= Time.deltaTime * _sensitivity;
             _yaw += _invertXAxis ? delta.x : -delta.x;
            
             _pitch += _invertYAxis ? delta.y : -delta.y;

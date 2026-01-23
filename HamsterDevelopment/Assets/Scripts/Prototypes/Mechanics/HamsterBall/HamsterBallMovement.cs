@@ -18,6 +18,17 @@ public class HamsterBallMovement : MonoBehaviour
     [SerializeField] private bool _useActionAsset = true;
     [SerializeField, ConditionalField(nameof(_useActionAsset))] private InputActionAsset _inputActionAsset;
     [SerializeField, ConditionalField(nameof(_useActionAsset), true)] private InputAction _inputAction;
+
+
+    public Vector3 CurrentVelocity
+    {
+        get
+        {
+            if(_rigidbody == null) return Vector3.zero;
+            else return _rigidbody.linearVelocity;
+        }
+    }
+
     private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -25,7 +36,9 @@ public class HamsterBallMovement : MonoBehaviour
         _useRegularForward = _characterPivot == null;
         if(!_useActionAsset) _inputAction.Enable();
     }
-
+    
+    
+    
     private void OnDisable()
     {
         if(!_useActionAsset) _inputAction.Disable();
@@ -33,9 +46,10 @@ public class HamsterBallMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!_useActionAsset && _inputAction.enabled)
+        if ((!_useActionAsset && _inputAction.enabled) || (_useActionAsset && _inputActionAsset.enabled))
         {
-           Vector2 input = _inputAction.ReadValue<Vector2>();
+           Vector2 input = _useActionAsset ? _inputActionAsset.FindAction("Move", true).ReadValue<Vector2>()
+               : _inputAction.ReadValue<Vector2>();
            var forwardDirection = new Vector3();
            var rightDirection = new Vector3();
            
@@ -57,5 +71,10 @@ public class HamsterBallMovement : MonoBehaviour
            }
            _rigidbody.AddForce(force, ForceMode.Impulse);
         }
+    }
+
+    public void AddSpeedBoost(float speed)
+    {
+        _rigidbody.AddForce(CurrentVelocity * speed, ForceMode.Impulse);
     }
 }
