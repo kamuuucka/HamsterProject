@@ -2,6 +2,7 @@ using System;
 using MyBox;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HamsterBallMovement : MonoBehaviour
@@ -10,16 +11,28 @@ public class HamsterBallMovement : MonoBehaviour
     [SerializeField] private float _speed = 10;
     [SerializeField] private float _turnSpeed = 10;
     [SerializeField] private float _turnThreshold = -0.2f;
-
+    
+    [SerializeField] private float _jumpForce = 10;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField,ReadOnly] private float coyoteTimer = 0;
+    
     private Rigidbody _rigidbody;
     private CharacterPivot _characterPivot;
+    
+    
+    
     [Header("Input")] 
     private bool _useRegularForward = false;
     [SerializeField] private bool _useActionAsset = true;
     [SerializeField, ConditionalField(nameof(_useActionAsset))] private InputActionAsset _inputActionAsset;
     [SerializeField, ConditionalField(nameof(_useActionAsset), true)] private InputAction _inputAction;
-
-
+    [SerializeField, ReadOnly] private bool _isGrounded;
+    [SerializeField, ReadOnly] private bool _canJump;
+    
+    [Header("References")]
+    [SerializeField] private Transform groundCheckLocation;
+    
     public Vector3 CurrentVelocity
     {
         get
@@ -35,10 +48,25 @@ public class HamsterBallMovement : MonoBehaviour
         _characterPivot = GetComponent<CharacterPivot>();
         _useRegularForward = _characterPivot == null;
         if(!_useActionAsset) _inputAction.Enable();
+        else
+        {
+            _inputActionAsset.FindAction("Jump").Enable();
+            _inputActionAsset.FindAction("Jump").performed += Jump;
+            _inputActionAsset.FindAction("Look").Enable();
+        }
+            
+            
     }
-    
-    
-    
+
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        if(!_canJump) return;
+        
+        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        _canJump = false;
+    }
+
+
     private void OnDisable()
     {
         if(!_useActionAsset) _inputAction.Disable();
@@ -70,6 +98,30 @@ public class HamsterBallMovement : MonoBehaviour
                force *= _turnSpeed;
            }
            _rigidbody.AddForce(force, ForceMode.Impulse);
+        }
+
+        if (!_isGrounded && _canJump)
+        {
+            coyoteTimer += Time.deltaTime;
+            if (coyoteTimer >= coyoteTime)
+            {
+                _canJump = false;
+            }
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (Physics.CheckSphere(groundCheckLocation.position, .25f, _groundMask))
+        {
+            _isGrounded = true;
+            _canJump = true;
+            coyoteTimer = 0;
+        }
+        else
+        {
+            _isGrounded = false;
         }
     }
 

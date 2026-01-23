@@ -387,6 +387,12 @@ MonoBehaviour:
   _speed: 55
   _turnSpeed: 5
   _turnThreshold: -0.2
+  _jumpForce: 100
+  coyoteTime: 0.2
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 727
+  coyoteTimer: 0
   _useActionAsset: 1
   _inputActionAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   _inputAction:
@@ -438,6 +444,9 @@ MonoBehaviour:
       m_Action: Input
       m_Flags: 8
     m_Flags: 0
+  _isGrounded: 0
+  _canJump: 0
+  groundCheckLocation: {fileID: 1168045077}
 --- !u!54 &42684595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4166,7 +4175,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 100
     PropagationSpeed: 343
-  DefaultVelocity: {x: -0.25, y: -0.5, z: 0}
+  DefaultVelocity: {x: -0.25, y: -1, z: 0}
 --- !u!114 &663781216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6758,6 +6767,76 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 9188f92edb57f80408edd2ed28a29dce, type: 2}
+--- !u!1 &1168045076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168045077}
+  - component: {fileID: 1168045078}
+  - component: {fileID: 1168045079}
+  m_Layer: 8
+  m_Name: Ground Check Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168045077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168045076}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168045078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168045076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a023d7fe898ae29428487493f4cd180b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowObject
+  Follow: 1
+  target: {fileID: 42684592}
+  offset: {x: 0, y: -1, z: 0}
+  followRotation: 0
+--- !u!135 &1168045079
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168045076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1188806395
 GameObject:
   m_ObjectHideFlags: 0
@@ -12097,6 +12176,7 @@ SceneRoots:
   - {fileID: 867246636}
   - {fileID: 1101895247}
   - {fileID: 42684592}
+  - {fileID: 1168045077}
   - {fileID: 159403820}
   - {fileID: 325937105}
   - {fileID: 663781214}
