@@ -27,7 +27,12 @@ namespace EventBus
                 return _instance;
             }
         }
-        
+        /// <summary>
+        /// Subscribe to a typed event using UnityEvents (The inspector way).
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
+        /// <typeparam name="T"></typeparam>
         public void Subscribe<T>(string eventName, UnityEvent<T> unityEvent)
         {
             if (typedUnityEvents.ContainsKey(typeof(T)))
@@ -41,7 +46,12 @@ namespace EventBus
                 typedUnityEvents.Add(typeof(T), newBus);
             }
         }
-
+        /// <summary>
+        /// Subscribe to a typed event using UnityActions (The code way).
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityAction"></param>
+        /// <typeparam name="T"></typeparam>
         public void Subscribe<T>(string eventName, UnityAction<T> unityAction)
         {
             if (typedActions.ContainsKey(typeof(T)))
@@ -56,7 +66,12 @@ namespace EventBus
                 
             }
         }
-        
+        /// <summary>
+        /// Unsubscribe to a typed event using UnityEvents (The inspector way).
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
+        /// <typeparam name="T"></typeparam>
         public void UnSubscribe<T>(string eventName, UnityEvent<T> unityEvent)
         {
             if (typedUnityEvents.ContainsKey(typeof(T)))
@@ -64,6 +79,12 @@ namespace EventBus
                 (typedUnityEvents[typeof(T)] as TypedEventBus<T>)?.UnSubscribe(eventName, unityEvent);
             }
         }
+        /// <summary>
+        /// Unsubscribe to a typed event using UnityActions (The code way).
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityAction"></param>
+        /// <typeparam name="T"></typeparam>
         public void UnSubscribe<T>(string eventName, UnityAction<T> unityEvent)
         {
             if (typedActions.ContainsKey(typeof(T)))
@@ -71,7 +92,11 @@ namespace EventBus
                 (typedActions[typeof(T)] as TypedActionEventBus<T>)?.UnSubscribe(eventName, unityEvent);
             }
         }
-        
+        /// <summary>
+        /// Subscribe to an event
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
         public void Subscribe(string eventName, UnityEvent unityEvent)
         {
             if (!events.TryAdd(eventName, new List<UnityEvent>() { unityEvent }))
@@ -79,7 +104,12 @@ namespace EventBus
                 events[eventName].Add(unityEvent);
             }
         }
-
+        /// <summary>
+        /// Publish a typed event.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="data"></param>
+        /// <typeparam name="T"></typeparam>
         public void Publish<T>(string eventName, T data)
         {
             if (typedUnityEvents.ContainsKey(typeof(T)))
@@ -93,7 +123,11 @@ namespace EventBus
                 (typedActions[typeof(T)] as TypedActionEventBus<T>)?.Publish(eventName, data);
             }
         }
-        
+        /// <summary>
+        /// Subscribe to an event.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
         public void Subscribe(string eventName, Action unityEvent)
         {
             if (!eventActions.TryAdd(eventName, new List<Action>() { unityEvent }))
@@ -101,7 +135,11 @@ namespace EventBus
                 eventActions[eventName].Add(unityEvent);
             }
         }
-
+        /// <summary>
+        /// Unsubscribe to an event. It is important to note that if you used a delegate to subscribe. You cannot unsubscribe said event (I.E. Don't do () => code here) but pass a method in the parameter.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
         public void UnSubscribe(string eventName, Action unityEvent)
         {
             if (eventActions.ContainsKey(eventName))
@@ -109,6 +147,11 @@ namespace EventBus
                 eventActions[eventName].Remove(unityEvent);
             }
         }
+        /// <summary>
+        /// Unsubscribe using a unity event.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="unityEvent"></param>
         public void UnSubscribe(string eventName, UnityEvent unityEvent)
         {
             if (events.ContainsKey(eventName))
@@ -116,7 +159,10 @@ namespace EventBus
                 events[eventName].Remove(unityEvent);
             }
         }
-
+        /// <summary>
+        /// Publish a regular event.
+        /// </summary>
+        /// <param name="eventName"></param>
         public void Publish(string eventName)
         {
             if (events.ContainsKey(eventName))
@@ -129,7 +175,10 @@ namespace EventBus
                 eventActions[eventName]?.ForEach(unityEvent => unityEvent?.Invoke());
             }
         }
-
+        /// <summary>
+        /// Finds all publishers in the scene and gets their event name.
+        /// </summary>
+        /// <returns>A list of the event names with publishers in  the scene.</returns>
         public string[] GetAllEventsInScene()
         {
             List<EventBusPublisher> publishers =
@@ -142,7 +191,10 @@ namespace EventBus
             return publishers.Select(p => p.Eventname).ToArray();
 
         }
-      
+        /// <summary>
+        /// Finds all typed publishers in the scene and gets their event name.
+        /// </summary>
+        /// <returns>A list of the event names with publishers in  the scene.</returns>
         public string[] GetAllEventsInScene<T>()
         {
             List<TypedEventBusPublisher<T>> publishers =
@@ -155,7 +207,10 @@ namespace EventBus
             return publishers.Select(p => p.Eventname).ToArray();
 
         }
-        
+        /// <summary>
+        /// Find all unsubscribed listeners of event name and subscribe them.
+        /// </summary>
+        /// <param name="eventName"></param>
         public void SubScribeAllUnsubScribedListeners(string eventName)
         {
             var allUnTypedListeners = GameObject.FindObjectsOfType<EventBusListener>(true);
@@ -166,7 +221,10 @@ namespace EventBus
                 listener.Subscribe();
             }
         }
-
+        /// <summary>
+        /// Clear out all subscribers of an event.
+        /// </summary>
+        /// <param name="eventName"></param>
         public void UnSubScribeAllSubScribedListeners(string eventName)
         {
             //events;
@@ -184,7 +242,11 @@ namespace EventBus
             }
             if(eventActions.ContainsKey(eventName)) eventActions[eventName].Clear();
         }
-
+        /// <summary>
+        /// <inheritdoc cref="UnSubScribeAllSubScribedListeners"/>
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <typeparam name="T"></typeparam>
         public void UnSubScribeAllSubScribedListeners<T>(string eventName)
         {
             //just remove it from the base dictionaries

@@ -32,7 +32,6 @@ public class ScreenFader : MonoBehaviour
         _canvasGroup.alpha = 1f;
         StartCoroutine(FadeToValue(0));
     }
-
     private IEnumerator FadeToValue(float value)
     {
         float time = 0;

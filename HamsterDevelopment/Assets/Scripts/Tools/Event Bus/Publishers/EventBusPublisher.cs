@@ -8,8 +8,9 @@ namespace EventBus
     public class EventBusPublisher : MonoBehaviour
     {
         [SerializeField] protected string eventName;
-        [SerializeField] protected bool clearAfterPublish = false;
-        [SerializeField] protected UnityEvent onPublished;
+        [SerializeField,Tooltip("After firing your event clear the current event.")] protected bool clearAfterPublish = false;
+        [SerializeField, Tooltip("Some actions need to happen AFTER publication (for example turning the publisher off. Use this event for those actions.")] 
+        protected UnityEvent onPublished;
         
         public string Eventname
         {

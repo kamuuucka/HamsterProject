@@ -21,6 +21,7 @@ public class BreakableObjectByVelocity : MonoBehaviour
         var hb = other.GetComponent<HamsterBallMovement>();
         if (hb != null)
         {
+            //Confirm player is fast enough to remove the wall (and enable debris if possible).
             float speed = hb.CurrentVelocity.magnitude;
             Debug.Log(
                 $"{gameObject.name}, {this.name}: Comparing velocity; Player speed:{speed}. Threshold: {VelocityRequiredToBreak}");

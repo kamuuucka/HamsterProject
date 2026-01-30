@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SlingShot : MonoBehaviour
 {
-    [SerializeField] private Vector3 _direction;
+    [SerializeField, Tooltip("The direction youre firing the object in.")] private Vector3 _direction;
     [SerializeField] private float _force;
     [SerializeField] private InputActionAsset _actionAsset;
     private HamsterBallMovement _movement;
