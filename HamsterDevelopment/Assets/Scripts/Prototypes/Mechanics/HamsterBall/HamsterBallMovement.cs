@@ -7,29 +7,30 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody))]
 public class HamsterBallMovement : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Movement Settings")]
     [SerializeField] private float _speed = 10;
     [SerializeField] private float _turnSpeed = 10;
     [SerializeField] private float _turnThreshold = -0.2f;
     
+    [Header("Jump Settings")]
     [SerializeField] private float _jumpForce = 10;
+    [SerializeField,ReadOnly] private float coyoteTimer = 0;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private LayerMask _groundMask;
-    [SerializeField,ReadOnly] private float coyoteTimer = 0;
-    
+    [SerializeField, ReadOnly] private bool _isGrounded;
+    [SerializeField, ReadOnly] private bool _canJump;
+
     private Rigidbody _rigidbody;
     private CharacterPivot _characterPivot;
     
     
     
-    [Header("Input")] 
-    private bool _useRegularForward = false;
+    [Header("Input Settings")] 
     [SerializeField] private bool _useActionAsset = true;
+    private bool _useRegularForward = false;
     [SerializeField, ConditionalField(nameof(_useActionAsset))] private InputActionAsset _inputActionAsset;
     [SerializeField, ConditionalField(nameof(_useActionAsset), true)] private InputAction _inputAction;
-    [SerializeField, ReadOnly] private bool _isGrounded;
-    [SerializeField, ReadOnly] private bool _canJump;
-    
+
     [Header("References")]
     [SerializeField] private Transform groundCheckLocation;
     
@@ -128,5 +129,10 @@ public class HamsterBallMovement : MonoBehaviour
     public void AddSpeedBoost(float speed)
     {
         _rigidbody.AddForce(CurrentVelocity * speed, ForceMode.Impulse);
+    }
+
+    public void SetVelocity(Vector3 newVelocity)
+    {
+        _rigidbody.linearVelocity = newVelocity;
     }
 }
