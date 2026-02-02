@@ -163,23 +163,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215d0a5aa4da79f478a4786ab410af31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialValues: {fileID: 0}
+  controlState: 0
   requireBiggerTotalSpeed: 1
   isLookForward: 1
   useVelocityTotal: 0
   useVelocityDirectional: 1
+  _disableMovement: 0
+  _maxHorVelocity: 0
+  _acceleration: 0
+  _control: 0
+  _brake: 0
   maxHorVelocity: 6
-  groundAcceleration: 0.5
-  groundControl: 0.1
-  groundBrake: 0.3
-  airAcceleration: 0.2
-  airControl: 0.1
-  airBrake: 0.05
+  groundAcceleration: 40
+  groundControl: 8
+  groundBrake: 24
+  airAcceleration: 16
+  airControl: 8
+  airBrake: 4
+  _minTurnSpeed: 1
+  _maxTurnSpeed: 7.5
   enableMinTurnSpeed: 1
-  minTurnSpeed: 1
-  maxTurnSpeed: 7.5
-  gravity: -9.81
+  minTurnSpeedGround: 1
+  maxTurnSpeedGround: 7.5
+  minTurnSpeedAir: 1
+  maxTurnSpeedAir: 3
+  _disableJumping: 0
+  _jumpHeight: 2
+  _shortJumpMult: 0.5
+  _jumpBuffer: 0.2
+  _coyoteTime: 0.2
   jumpHeight: 1
   shortJumpMult: 0.5
+  jumpBuffer: 0.2
+  coyoteTime: 0.2
+  _disableGravity: 0
+  _gravity: -9.81
+  _bonusGravity: 1
+  _terminalVelocity: 20
+  gravity: -9.81
   bonusGravity: 1
   terminalVelocity: 20
   groundCheck: {fileID: 4791204475986938984}
@@ -189,6 +211,8 @@ MonoBehaviour:
     m_Bits: 64
   isDebug: 0
   showGroundSphere: 0
+  displayActualValues: 0
+  changeActualValues: 0
 --- !u!114 &4937743725838097915
 MonoBehaviour:
   m_ObjectHideFlags: 0

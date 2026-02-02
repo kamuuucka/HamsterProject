@@ -1,4 +1,5 @@
 using MyBox;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -12,146 +13,230 @@ namespace Prototypes.Character
         {
             Grounded, Airborne, Special
         }
+        public enum VelocityState
+        {
+            Acceleration, Control, Brake
+        }
+
+        [DisplayInspector]
+        [Tooltip("This is where special movement values show up. If something shows up here (and you didn't add it manually), it means these values are used \nThis should usually get attached through the SetSpecialValues function, but you can also attach one manually. If you do this (or change the Scriptable Object) during playmode, make sure to press the [Reload Values] button at the bottom (or the values won't do anything!).")]
+        [SerializeField] private CharacterMovementValues specialValues;
+
+        [Description("\nAny values you see above are part of a scriptable object. \n" +
+        "Any values you change there are permanent and don't revert to their previous value upon exiting play mode.\n", messageType = MessageType.Warning)]
+
         [Tooltip("State machine (debug)")]
         [SerializeField, ReadOnly] ControlState controlState = ControlState.Grounded;
 
-        [DisplayInspector]
-        [Tooltip("Attaching something here means using it. It gets removed if you stop using it")]
-        [SerializeField] private CharacterMovementValues specialValues;
+        [Tooltip("Not a state machine")]
+        [SerializeField, ReadOnly] public VelocityState velocityState;
 
-
-        [Header("Horizontal Movement")]
 
         [Header("Choices for Control or Acceleration")]
 
+
         [Tooltip("Used for deciding control or acceleration. \nDo you want to require total speed of desired velocity to be bigger than total speed of current velocity?")]
-        [SerializeField] private bool requireBiggerTotalSpeed;
+        [SerializeField][Foldout("Control or Acceleration")] private bool requireBiggerTotalSpeed;
 
         [Tooltip("Used for deciding control or acceleration. \nWhen changing move direction, should the calculations use the look direction (true) or the velocity direction (false)?")]
-        [SerializeField] private bool isLookForward;
+        [SerializeField][Foldout("Control or Acceleration")] private bool isLookForward;
 
         [Tooltip("Used for deciding control or acceleration. \nShould the length of the desired velocity on the chosen direction be bigger than the total length of the current velocity?")]
-        [SerializeField] private bool useVelocityTotal;
+        [SerializeField][Foldout("Control or Acceleration")] private bool useVelocityTotal;
 
         [Tooltip("Used for deciding control or acceleration. \nShould the length of the desired velocity on the chosen direction be bigger than the length of the current velocity on the chosen direction? \n This is ignored if above is true.")]
-        [SerializeField] private bool useVelocityDirectional;
+        [SerializeField][Foldout("Control or Acceleration")] private bool useVelocityDirectional;
 
 
+
+        #region Movement values
+        [Space]
         [Header("Movement parameters")]
 
+        [Description("\nThe values you see below are actively used during gameplay. \nThey're overwritten when [controlState] changes or if the values are reloaded. \nIf you can't see them, set [displayActualValues] at the bottom to true\n", messageType = MessageType.Info)]
+        
         [Tooltip("Should movement be disabled? This means that this script doesn't look at move inputs while true")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableMovement = false;
-        [Tooltip("Actual maximum horizontal velocity that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _maxHorVelocity;
-        [Tooltip("Acceleration for direction player is facing")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _acceleration;
-        [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _control;
-        [Tooltip("Deceleration when player doesn't input movement")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _brake;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private bool _disableMovement = false;
+        
+        [Tooltip("Actual maximum horizontal velocity that's used. This can be changed with the CharacterMovementValues Scriptable Object \n\n[Units]/[Seconds] \n(If moving at maximum speed, your horizontal position changes by this value every second)")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _maxHorVelocity;
+        
+        [Tooltip("Acceleration for direction player is facing \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _acceleration;
+        
+        [Tooltip("Acceleration for directions player isn't facing (left, right, back) \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _control;
+        
+        [Tooltip("Deceleration when player doesn't input movement \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _brake;
 
-        [Tooltip("Maximum horizontal velocity")]
+
+        [Separator("Indirect values")]
+        [Description("\nThe values below don't directly influence the current movement values. Either change [controlState] (by jumping/landing) or click the [Reload Values] button to reload values for current [controlState]\n", messageType = MessageType.Info)]
+
+        [Tooltip("Maximum horizontal velocity \n\n[Units]/[Seconds] \n(If moving at maximum speed, your horizontal position changes by this value every second)")]
         [SerializeField] private float maxHorVelocity;
-        [Tooltip("Acceleration for direction player is facing")]
+        
+        [Tooltip("Acceleration for direction player is facing \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float groundAcceleration;
-        [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
+        
+        [Tooltip("Acceleration for directions player isn't facing (left, right, back) \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float groundControl;
-        [Tooltip("Deceleration when player doesn't input movement")]
+        
+        [Tooltip("Deceleration when player doesn't input movement \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float groundBrake;
 
-        [Tooltip("Acceleration for direction player is facing")]
+        
+        [Tooltip("Acceleration for direction player is facing \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float airAcceleration;
-        [Tooltip("Acceleration for directions player isn't facing (left, right, back)")]
+        
+        [Tooltip("Acceleration for directions player isn't facing (left, right, back) \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float airControl;
-        [Tooltip("Deceleration when player doesn't input movement")]
+        
+        [Tooltip("Deceleration when player doesn't input movement \n\n[Units]/[Seconds]^2 \n(Velocity changes by this value every second)")]
         [SerializeField] private float airBrake;
+        #endregion
 
 
+        #region Turn values
+        [Space]
         [Header("Turn parameters")]
+
+        
+        [Tooltip("Amount of degrees per frame the player can rotate when standing still")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _minTurnSpeed = 1f;
+        
+        [Tooltip("Amount of degrees per frame the player can rotate when moving at top speed")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _maxTurnSpeed = 7.5f;
+
+
+        [Separator("Indirect values")]
 
         [Tooltip("Do you want the player to rotate slower at lower velocity?")]
         [SerializeField] private bool enableMinTurnSpeed;
-        [Tooltip("Amount of degrees per frame the player can rotate when standing still")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _minTurnSpeed = 1f;
-        [Tooltip("Amount of degrees per frame the player can rotate when moving at top speed")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _maxTurnSpeed = 7.5f;
 
         [Tooltip("Amount of degrees per frame the player can rotate when standing still on the ground")]
         [SerializeField] private float minTurnSpeedGround = 1f;
+        
         [Tooltip("Amount of degrees per frame the player can rotate when moving at top speed on the ground")]
         [SerializeField] private float maxTurnSpeedGround = 7.5f;
+        
         [Tooltip("Amount of degrees per frame the player can rotate when airborne without horizontal speed")]
         [SerializeField] private float minTurnSpeedAir = 1f;
+        
         [Tooltip("Amount of degrees per frame the player can rotate when airborne with top horizontal speed")]
         [SerializeField] private float maxTurnSpeedAir = 3f;
+        #endregion
 
 
+        #region Jump values
+        [Space]
         [Header("Jump parameters")]
 
+
         [Tooltip("Should jumping be disabled? This means there's no way to jump")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableJumping = false;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private bool _disableJumping = false;
+        
         [Tooltip("Actual jump height parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _jumpHeight = 2f;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _jumpHeight = 2f;
+        
         [Tooltip("Actual short jump multiplier parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _shortJumpMult = .5f;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _shortJumpMult = .5f;
+        
         [Tooltip("Actual jump buffer parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _jumpBuffer = .2f;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _jumpBuffer = .2f;
+        
         [Tooltip("Actual coyote time parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _coyoteTime = .2f;
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _coyoteTime = .2f;
+
+
+        [Separator("Indirect values")]
 
         [Range(0.5f,5f)] [Tooltip("The height of the jump. 1 is 1 unity cube.")]
         [SerializeField] private float jumpHeight = 2f;
+        
         [Range(0f, 1f)] [Tooltip("Variable jump height. If you let go of the jump button before reaching the peak of the jump, the velocity gets multiplied with this amount.\n\n0 = full stop to upwards velocity\n1 = no special changes to upwards velocity")]
         [SerializeField] private float shortJumpMult = .5f;
 
+
         [Range(0f, .5f)] [Tooltip("Not implemented yet!!! When you press jump while still in the air, you'll still jump if you land on the ground within [jumpBuffer] seconds")]
         [SerializeField] private float jumpBuffer = .2f;
+        
         [Range(0f, .5f)] [Tooltip("Not implemented yet!!! When you fall off a platform, you can still jump for [coyoteTime] seconds")]
         [SerializeField] private float coyoteTime = .2f;
+        #endregion
 
 
+        #region Gravity values
+        [Space]
         [Header("Gravity parameters")]
 
-        [Tooltip("Should gravity be disabled? This makes it so the gravity values aren't used")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private bool _disableGravity = false;
-        [Tooltip("Actual gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _gravity = -9.81f;
-        [Tooltip("Actual bonus gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _bonusGravity = 1;
-        [Tooltip("Actual terminal velocity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
-        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues))] private float _terminalVelocity = 20f;
 
+        [Tooltip("Should gravity be disabled? This makes it so the gravity values aren't used")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private bool _disableGravity = false;
+        
+        [Tooltip("Actual gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _gravity = -9.81f;
+        
+        [Tooltip("Actual bonus gravity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _bonusGravity = 1;
+        
+        [Tooltip("Actual terminal velocity parameter that's used. This can be changed with the CharacterMovementValues Scriptable Object")]
+        [SerializeField, ConditionalField(nameof(displayActualValues)), ReadOnly(nameof(changeActualValues), true)] private float _terminalVelocity = 20f;
+
+
+        [Separator("Indirect values")]
 
         [Tooltip("The modifier used to fake gravity. -9.81 is the default setting that is supposed to fake the real world gravity.")]
         [SerializeField] private float gravity = -9.81f;
+        
         [Range(0f, 2f)] [Tooltip("Extra bit of gravity multiplier when falling. Should be subtle")]
         [SerializeField] private float bonusGravity = 1;
+        
         [Range(0.1f, 30f)] [Tooltip("Max fall speed. Only applies for falling here, but realistically, it should apply in all directions. \nAccording to quora, a hamster can reach a terminal velocity on the order of 15-25 m/s")]
         [SerializeField] private float terminalVelocity = 20f;
+        #endregion
 
 
+        [Space]
+        [Separator("Other")]
 
-        [Header("Other")]
+
 
         [Header("Ground Check")]
+        
+        
         [Tooltip("Transform that is treated as a ground check. Please position at the character's feet.")]
         [SerializeField] private Transform groundCheck;
+        
         [Range(0.1f,0.5f)][Tooltip("Radius of the ground checking sphere.")]
         [SerializeField] private float groundSphereRadius = 0.4f;
+        
         [Tooltip("Layers that should be classified as ground.")]
         [SerializeField] private LayerMask groundMask;
 
+
+        
         [Header("Debug Options")] 
+        
+        
         [Tooltip("Enables the debug logs.")]
         [SerializeField] private bool isDebug;
+        
         [Tooltip("Enables the gizmo for the ground checking sphere.")]
         [SerializeField] private bool showGroundSphere;
+
+
+        [Description("\nEnable the values below to see and temporarily change the current movement values. \nWATCH OUT: When [controlState] is changed or [Reload Values] is pressed, they'll get overridden with no way to recover them.\n", messageType = MessageType.Info)]
+        
         [Tooltip("There's groundAcceleration and airAcceleration, but the value that's currently being used is hidden. Set to true to show them")]
         [SerializeField] private bool displayActualValues;
+        
         [Tooltip("Allows you to change the actual values, but the change will only last until the value is loaded again")]
         [SerializeField] private bool changeActualValues;
 
         public bool Grounded => _isGrounded;
+        public Vector2 MoveInput => _moveInput;
         
         private CharacterController _controller;
         private Vector3 _velocity;
@@ -224,14 +309,13 @@ namespace Prototypes.Character
         }
 
 
-        // Horizontal movement
+        /// <summary>
+        /// Starts with determining whether to use Acceleration, Control or Brake
+        /// and moves velocity by that value to where you want to go.
+        /// Also applies rotation
+        /// </summary>
         private void CalculateMovement()
         {
-            // Using the right numbers for air and ground
-           /* float tempAcceleration = _isGrounded ? groundAcceleration : airAcceleration;
-            float tempControl = _isGrounded ? groundControl : airControl;
-            float tempBrake = _isGrounded ? groundBrake : airBrake;*/
-
 
             Vector2 horVel = new Vector2(_velocity.x, _velocity.z);
             Vector2 desiredVelocity = _moveInput * _maxHorVelocity;
@@ -243,7 +327,8 @@ namespace Prototypes.Character
             if (_moveInput.magnitude != 0)
             {
                 // Looking how much the input direction matches the forward direction
-                Vector2 forwardVector = new Vector2(transform.forward.x, transform.forward.z).normalized;
+                //Vector2 forwardVector = new Vector2(transform.forward.x, transform.forward.z).normalized;
+                Vector2 forwardVector = transform.forward.ToVector2XZ().normalized;
 
                 speedChange = CalculateSpeedChange(forwardVector, horVel, desiredVelocity);
 
@@ -258,9 +343,10 @@ namespace Prototypes.Character
             else
             {
                 speedChange = _brake;
+                velocityState = VelocityState.Brake;
             }
 
-            Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange);
+            Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange * Time.deltaTime);
 
             _velocity.x = a.x;
             _velocity.z = a.y;
@@ -271,6 +357,7 @@ namespace Prototypes.Character
         // Me when I use 40 lines of code for 7 real lines of code:
         private float CalculateSpeedChange(Vector2 pForwardVector, Vector2 pHorVel, Vector2 pDesiredVelocity)
         {
+            velocityState = VelocityState.Control;
             // Direction
             // How much does the input direction match the forward direction?
             float forwardDot = Vector2.Dot(_moveInput, isLookForward ? pForwardVector : pHorVel.normalized);
@@ -279,7 +366,9 @@ namespace Prototypes.Character
             // I don't know if this is better for performance or not, but shouldn't make a huge difference
             //if (forwardDot <= 0) return pControl;
 
+          //  Debug.Log("CM Forward look vector: (" + pForwardVector.x + ", " + pForwardVector.y + ") Magnitude: (" + pForwardVector.magnitude + ")");
 
+          //  Debug.Log("First check. Desired vel: " + pDesiredVelocity.magnitude + "  " + pDesiredVelocity + " (" + _moveInput + ")  \n Hor vel: " + pHorVel.magnitude + "  " + pHorVel + " (" + pHorVel/_maxHorVelocity + ")");
             // Include or exclude lower total speeds?
             if (requireBiggerTotalSpeed && pDesiredVelocity.magnitude < pHorVel.magnitude) return _control;            
 
@@ -298,8 +387,10 @@ namespace Prototypes.Character
 
             //Debug.Log("Forward dot: " + forwardDot*maxHorVelocity + " (" + forwardDot + ").\nValue it's compared with: " + compareToValue);
 
+           // Debug.Log("Second check. Move input dot: " + forwardDot * _maxHorVelocity + " (" + forwardDot + ")  \n value compared to: " + compareToValue + " (" + compareToValue/_maxHorVelocity + ")");
+          //  Debug.LogError("Second check. Move input dot: " + forwardDot + "  \n value compared to: " + compareToValue/_maxHorVelocity + " (" + (Mathf.Abs(forwardDot) - Mathf.Abs(compareToValue/_maxHorVelocity))+ ")");
             // If length of forward is smaller than required threshold
-            if (forwardDot * _maxHorVelocity <= compareToValue) return _control;
+            if (forwardDot < compareToValue / _maxHorVelocity - 0.001f) return _control;
 
 
             // Summary of what's going on:
@@ -311,7 +402,8 @@ namespace Prototypes.Character
             // If input length on chosen direction is bigger, use acceleration
             // If current velocity length on chosen direction is bigger, use control
 
-
+          //  Debug.Log("Last check (not really a check anymore)");
+            velocityState = VelocityState.Acceleration;
             return _acceleration;
         }
 
@@ -329,7 +421,9 @@ namespace Prototypes.Character
 
         private void CheckJump()
         {
-            // TODO: Come up with convenient way to disable jumping
+            // TODO: Come up with (more?) convenient way to disable jumping
+            if (_disableJumping) return;
+
             bool isJumping = _jumpInput.triggered;
 
             float newValue = _velocity.y;
@@ -407,9 +501,11 @@ namespace Prototypes.Character
             _moveInput.x = x;
             _moveInput.y = y;
 
+            if (_moveInput.magnitude > 1) _moveInput.Normalize();
         }
 
-        private Vector3 GetCameraForward()
+        // Public for MovementVisualisation
+        public Vector3 GetCameraForward()
         {
             // TODO: Make better system for this!
             if (_pivot == null) TryGetComponent(out _pivot);
@@ -445,6 +541,7 @@ namespace Prototypes.Character
             
             return "Reloaded values";
         }
+
 
         #region Setting Values
 
@@ -542,13 +639,37 @@ namespace Prototypes.Character
         }
         #endregion
 
+
+        public Vector2 GetPercentualVelocity()
+        {
+            return new Vector2(_velocity.x, _velocity.z) / _maxHorVelocity;
+        }
+
+        /// <summary>
+        /// Returns one of the booleans that incluence whether control or acceleration is used
+        /// </summary>
+        /// <param name="pId">0 = requireBiggerTotalSpeed, 1 = isLookForward, 2 = useVelocityTotal, 3 = useVelocityDirectional</param>
+        /// <returns>0 = requireBiggerTotalSpeed, 1 = isLookForward, 2 = useVelocityTotal, 3 = useVelocityDirectional</returns>
+        public bool GetBoolControlAcceleration(int pId)
+        {
+            switch (pId)
+            {
+                case 0: return requireBiggerTotalSpeed;
+                case 1: return isLookForward;
+                case 2: return useVelocityTotal;
+                case 3: return useVelocityDirectional;
+                default:
+                    Debug.LogWarning("Incorrect value given");
+                    return false;
+            }
+        }
+
         private void OnDrawGizmosSelected()
         {
             if (showGroundSphere)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(groundCheck.position, groundSphereRadius);
-                //Gizmos.DrawWireCube(groundCheck.position, new Vector3(1, .2f, 1));
             }
 
             //TODO?: Add Input and Velocity arrows?

@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a511e2bff85c24488bcc5a5d76e48f7, type: 3}
-  m_Name: CharacterMovementValues
+  m_Name: HighJump
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovementValues
   disableMovement: 0
   disableJumping: 0
   disableGravity: 0
-  useMovementValues: 1
+  useMovementValues: 0
   useTurnValues: 0
-  useJumpValues: 0
+  useJumpValues: 1
   useGravityValues: 0
   resetVelocity: 0
-  maxHorVelocity: 6
-  acceleration: 40
-  control: 8
-  brake: 24
+  maxHorVelocity: 4
+  acceleration: 0.8
+  control: 0.4
+  brake: 1.6
   minTurnSpeed: 1
   maxTurnSpeed: 7.5
-  jumpHeight: 2
+  jumpHeight: 6
   shortJumpMult: 0.5
   jumpBuffer: 0.2
   coyoteTime: 0.2
