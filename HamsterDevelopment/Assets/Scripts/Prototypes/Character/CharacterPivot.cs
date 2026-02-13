@@ -22,6 +22,7 @@ public class CharacterPivot : MonoBehaviour
     [FormerlySerializedAs("pivotTransform")]
     [Header("References")]
     [SerializeField] private Transform _pivotTransform;
+    public Transform PivotTransform => _pivotTransform;
     private float _pitch = 0f;
     private float _yaw = 0f;
     private float _roll = 0;
@@ -50,6 +51,11 @@ public class CharacterPivot : MonoBehaviour
     }
 
     [ReadOnly] public bool EnableCameraMovement = true;
+
+    public void SetEnableCameraMovement(bool enable)
+    {
+        EnableCameraMovement = enable;
+    }
     
     private void OnEnable()
     {
