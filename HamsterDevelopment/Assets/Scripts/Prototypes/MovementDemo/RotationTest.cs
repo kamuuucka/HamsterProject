@@ -8,10 +8,10 @@ public class RotationTest : MonoBehaviour
 
     [Tooltip("If this object has a rigidbody: Check this box and drag rigidbody component in the field that appears below")]
     [SerializeField] bool hasRigidbody;
-    [SerializeField, ConditionalField(nameof(hasRigidbody), true)] Rigidbody rb;
+    [SerializeField, ConditionalField(nameof(hasRigidbody))] Rigidbody rb;
 
     [Tooltip("Reapplies force to rigidbody every [value] seconds")]
-    [SerializeField, ConditionalField(nameof(hasRigidbody), true)] float velocityResetTimer = 10;
+    [SerializeField, ConditionalField(nameof(hasRigidbody))] float velocityResetTimer = 10;
     bool velocityReset = true;
 
 
