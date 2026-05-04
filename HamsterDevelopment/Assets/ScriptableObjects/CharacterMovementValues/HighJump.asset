@@ -18,7 +18,7 @@ MonoBehaviour:
   useMovementValues: 0
   useTurnValues: 0
   useJumpValues: 1
-  useGravityValues: 0
+  useGravityValues: 1
   resetVelocity: 0
   maxHorVelocity: 4
   acceleration: 0.8
@@ -30,6 +30,6 @@ MonoBehaviour:
   shortJumpMult: 0.5
   jumpBuffer: 0.2
   coyoteTime: 0.2
-  gravity: -9.81
+  gravity: -40
   bonusGravity: 1
-  terminalVelocity: 20
+  terminalVelocity: 50

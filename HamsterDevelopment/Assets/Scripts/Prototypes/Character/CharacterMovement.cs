@@ -261,6 +261,16 @@ namespace Prototypes.Character
 
         private void Update()
         {
+
+            // Only knowing what buttons are pressed. Needs to be in Update
+            CheckInputs();
+
+            // Calculating vertical movement
+            CheckJump();
+        }
+
+        private void FixedUpdate()
+        {
             CheckGrounded();
            // _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
             //_isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(.5f, .1f, .5f), transform.rotation, groundMask);
@@ -270,20 +280,13 @@ namespace Prototypes.Character
             // ??????
             ResetVelocity();
 
-            // Only knowing what buttons are pressed. Needs to be in Update
-            CheckInputs();
-
             // Calculating horizontal movement
             CalculateMovement(); 
 
-            // Calculating vertical movement
-            CheckJump();
 
             ApplyGravity();
 
             if (_controller.enabled) ApplyMovement();
-
-
         }
 
         private void CheckInputs()
@@ -346,7 +349,7 @@ namespace Prototypes.Character
                 velocityState = VelocityState.Brake;
             }
 
-            Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange * Time.deltaTime);
+            Vector2 a = Vector2.MoveTowards(horVel, desiredVelocity, speedChange * Time.fixedDeltaTime);
 
             _velocity.x = a.x;
             _velocity.z = a.y;
@@ -458,7 +461,7 @@ namespace Prototypes.Character
 
 
             // Increase for velocity is linear, so we just add gravity's acceleration since last frame
-            g *= Time.deltaTime;
+            g *= Time.fixedDeltaTime;
 
             // Alternative way of enforcing terminal velocity?
             //if (g > _velocity.y + terminalVelocity) g = _velocity.y + terminalVelocity;
@@ -473,7 +476,7 @@ namespace Prototypes.Character
 
         private void ApplyMovement()
         {
-            _controller.Move(_velocity * Time.deltaTime);
+            _controller.Move(_velocity * Time.fixedDeltaTime);
         }
 
 
