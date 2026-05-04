@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class SlingShot_New : MonoBehaviour
 {
+    [Header("Force")]
     [SerializeField] private float _maxForce = 5;
     [SerializeField] private float _forceIncrements = .1f;
     [SerializeField, Tooltip("Essentially we're working with big numbers and the direction is accurately portrayed. This means if we show a ration of 1:1 you pull yourself off screen. 10 here means youre going 10x as far as shown on the string.")] 
@@ -11,6 +12,14 @@ public class SlingShot_New : MonoBehaviour
     [SerializeField] private float cooldown = 5f;
     private bool onCooldown = false;
     private float cooldownTimer = 0;
+    
+    [Header("Noise")]
+    [SerializeField] private float xNoiseAmplifier = 1;
+    [SerializeField] private float xNoiseSpeed = 1;
+    [SerializeField] private float yNoiseAmplifier = 1;
+    [SerializeField] private float yNoiseSpeed = 1;
+    
+    [Header("References")]
     [SerializeField] private string _playerTag = "Player";
     [SerializeField] private GameObject _minigameCamera;
     [SerializeField] private Transform _seatTransform;
@@ -26,12 +35,8 @@ public class SlingShot_New : MonoBehaviour
     private Vector3 localSeatPosition = Vector3.zero;
 
 
-    [SerializeField] private float xNoiseAmplifier = 1;
-    [SerializeField] private float xNoiseSpeed = 1;
-    [SerializeField] private float yNoiseAmplifier = 1;
-    [SerializeField] private float yNoiseSpeed = 1;
     private Vector3 noiseVector = Vector3.zero;
-    
+    private float swayTimer = 0;
     private void Start()
     {
         localSeatPosition = _seatTransform.localPosition;
@@ -88,8 +93,9 @@ public class SlingShot_New : MonoBehaviour
                 if (forceVector.magnitude >= _maxForce)
                 {
                     //Start noise;
-                    noiseVector.x = Mathf.Sin(Time.time * xNoiseSpeed) * xNoiseAmplifier;
-                    noiseVector.y = Mathf.Abs(Mathf.Cos(Time.time * yNoiseSpeed) * yNoiseAmplifier) ;
+                    swayTimer += Time.deltaTime;
+                    noiseVector.x = Mathf.Sin(swayTimer * xNoiseSpeed) * xNoiseAmplifier;
+                    noiseVector.y = Mathf.Abs(Mathf.Cos(swayTimer * yNoiseSpeed) * yNoiseAmplifier) ;
                 }
                 Debug.Log($"{gameObject.name}, total force: {forceVector} total Noise: {noiseVector}");
                 _seatTransform.localPosition = localSeatPosition + (forceVector * (_stringTensionMultiplier / 100));
@@ -104,6 +110,7 @@ public class SlingShot_New : MonoBehaviour
 
                 forceVector = Vector3.zero;
                 noiseVector = Vector3.zero;
+                swayTimer = 0;
                 SetArrowScale();
             }
             else if (input == Vector2.zero && forceVector != Vector3.zero)
@@ -119,6 +126,7 @@ public class SlingShot_New : MonoBehaviour
                 Debug.Log($"{this.gameObject.name}: Releasing with force vector: {translatedForce}");
                 noiseVector = Vector3.zero;
                 forceVector = Vector3.zero;
+                swayTimer = 0;
                 SetArrowScale();
             }
             

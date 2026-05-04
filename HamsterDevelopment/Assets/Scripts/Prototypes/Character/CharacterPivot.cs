@@ -14,6 +14,8 @@ public class CharacterPivot : MonoBehaviour
     [SerializeField] private float _lowestAngle = -30;
     [SerializeField] private float _highestAngle = 60;
     [SerializeField] private bool _hideAndLockCursor = true;
+    private Vector2 _smoothDelta;
+    [SerializeField] private float _smoothSpeed = 12f;
     
     [Header("Input")] 
     [SerializeField] private bool _useActionAsset = true;
@@ -59,7 +61,11 @@ public class CharacterPivot : MonoBehaviour
     
     private void OnEnable()
     {
-        
+        if (_hideAndLockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         if(!_useActionAsset) _inputAction.Enable();
     }
 
@@ -68,16 +74,23 @@ public class CharacterPivot : MonoBehaviour
         if(!_useActionAsset) _inputAction.Disable();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        if(!EnableCameraMovement) return;
         if ((!_useActionAsset && _inputAction.enabled) || (_useActionAsset && _inputActionAsset.enabled ))
         {
             Vector2 delta = _useActionAsset
                 ? _inputActionAsset.FindAction("Look", true).ReadValue<Vector2>()
-                : _inputAction.ReadValue<Vector2>(); delta *= Time.deltaTime * _sensitivity;
+                : _inputAction.ReadValue<Vector2>(); 
+            
+            _smoothDelta = Vector2.Lerp(_smoothDelta, delta, Time.deltaTime * _smoothSpeed);
+            delta = _smoothDelta * _sensitivity;
+            
             _yaw += _invertXAxis ? delta.x : -delta.x;
-           
+            _yaw = Mathf.Repeat(_yaw, 360f);
+            
             _pitch += _invertYAxis ? delta.y : -delta.y;
+            
             _pitch = Mathf.Clamp(_pitch, _lowestAngle, _highestAngle);
             _pivotTransform.localRotation = Quaternion.Euler(_pitch, _yaw, _roll); 
         }
@@ -88,5 +101,15 @@ public class CharacterPivot : MonoBehaviour
        Gizmos.color = Color.aquamarine;
        Gizmos.DrawRay(this.transform.position, PivotForward);
        
+    }
+
+    public void SetPivotForward(Vector3 forward)
+    {
+        _pivotTransform.LookAt(_pivotTransform.position + forward);
+        _smoothDelta = Vector2.zero;
+        _pitch = 0f;
+        _yaw = 0f;
+        _roll = 0f;
+        
     }
 }
