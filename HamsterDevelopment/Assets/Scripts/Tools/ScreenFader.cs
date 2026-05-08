@@ -9,7 +9,7 @@ public class ScreenFader : MonoBehaviour
 {
     [ReadOnly, SerializeField] private bool _isFading = false;
     [SerializeField] private float _fadeDuration = 1f;
-
+    public float Duraction {get {return _fadeDuration;}}
     private CanvasGroup _canvasGroup;
 
     private void OnEnable()
