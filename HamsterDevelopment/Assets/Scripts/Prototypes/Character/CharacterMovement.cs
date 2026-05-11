@@ -244,6 +244,12 @@ namespace Prototypes.Character
 
         private Vector2 _moveInput;
         private InputAction _jumpInput;
+        private bool _jumpButtonPressed;
+        private bool _jumpButtonReleased;
+        private bool _jumpVariableBuffer;
+
+        private float _jumpBufferTimer;
+        private float _coyoteJumpTimer;
 
         private CharacterPivot _pivot;
 
@@ -266,7 +272,7 @@ namespace Prototypes.Character
             CheckInputs();
 
             // Calculating vertical movement
-            CheckJump();
+            //CheckJump();
         }
 
         private void FixedUpdate()
@@ -281,7 +287,9 @@ namespace Prototypes.Character
             ResetVelocity();
 
             // Calculating horizontal movement
-            CalculateMovement(); 
+            CalculateMovement();
+
+            CalculateJump();
 
 
             ApplyGravity();
@@ -296,11 +304,22 @@ namespace Prototypes.Character
             RotateInputToCamera();
 
             _jumpInput = InputSystem.actions["Jump"];
+            if (_jumpInput.triggered) _jumpButtonPressed = true;
+            if (_jumpInput.WasReleasedThisFrame()) _jumpButtonReleased = true;
         }
 
         private void CheckGrounded()
         {
             _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+
+            if (_isGrounded)
+            {
+                _coyoteJumpTimer = _coyoteTime;
+            }
+            else
+            {
+                _coyoteJumpTimer = Mathf.Max(0f, _coyoteJumpTimer - Time.fixedDeltaTime);
+            }
 
             // If controlState is the opposite of what it's supposed to be
             if (controlState == (_isGrounded ? ControlState.Airborne : ControlState.Grounded))
@@ -421,6 +440,91 @@ namespace Prototypes.Character
         }
 
 
+
+        private void CalculateJump()
+        {
+            
+            if (CheckJumpWithBuffer() && (_isGrounded || _coyoteJumpTimer > 0))
+            {
+                Jump();
+                Debug.Log("Jumped");
+            }
+
+
+            // Variable jump height
+            if (_jumpButtonReleased)
+            {
+                _jumpButtonReleased = false;
+                
+                DoVariableJumpHeight();
+                
+                if (_velocity.y > 0)
+                {
+                    //_velocity.y *= _shortJumpMult;
+                }
+            }
+
+
+        }
+
+        private bool CheckJumpWithBuffer()
+        {
+
+            if (_jumpButtonPressed)
+            {
+                _jumpBufferTimer = _jumpBuffer;
+                _jumpButtonPressed = false;
+
+                // You (typically) can't both press and release a button in the same frame
+                _jumpVariableBuffer = false;
+                _jumpButtonReleased = false;
+                return true;
+            }
+
+            _jumpBufferTimer = Mathf.Max(_jumpBufferTimer - Time.fixedDeltaTime, 0);
+
+
+            if (_jumpBufferTimer > 0)
+            {
+                if (_jumpButtonReleased)
+                {
+                    Debug.Log("Released jump button before buffer timer was up");
+                    _jumpButtonReleased = false;
+                    // Immediately apply variable jump height
+                    _jumpVariableBuffer = true;
+                }
+                return true;
+            }
+
+
+            return false;
+        }
+
+        private void Jump()
+        {
+            _jumpBufferTimer = 0;
+            _coyoteJumpTimer = 0;
+
+            if (_disableJumping) return;
+            _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+
+            if (_jumpVariableBuffer)
+            {
+                DoVariableJumpHeight();
+            }
+            
+        }
+
+        private void DoVariableJumpHeight()
+        {
+            if (_velocity.y > 0)
+            {
+                _velocity.y *= _shortJumpMult;
+
+                _jumpVariableBuffer = false;
+                Debug.Log("Variable jump height");
+            }
+        }
 
         private void CheckJump()
         {

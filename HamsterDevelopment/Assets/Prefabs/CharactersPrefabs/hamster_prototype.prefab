@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialValues: {fileID: 0}
   controlState: 0
+  velocityState: 0
   requireBiggerTotalSpeed: 1
   isLookForward: 1
   useVelocityTotal: 0
@@ -195,8 +196,8 @@ MonoBehaviour:
   _coyoteTime: 0.2
   jumpHeight: 1
   shortJumpMult: 0.5
-  jumpBuffer: 0.2
-  coyoteTime: 0.2
+  jumpBuffer: 0.1
+  coyoteTime: 0.1
   _disableGravity: 0
   _gravity: -9.81
   _bonusGravity: 1
