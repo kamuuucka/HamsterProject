@@ -271,8 +271,6 @@ namespace Prototypes.Character
             // Only knowing what buttons are pressed. Needs to be in Update
             CheckInputs();
 
-            // Calculating vertical movement
-            //CheckJump();
         }
 
         private void FixedUpdate()
@@ -283,7 +281,7 @@ namespace Prototypes.Character
             
             if (isDebug) SuperDebug.Log($"{transform.position}");
             
-            // ??????
+            // Making sure the downwards velocity doesn't go very high when grounded
             ResetVelocity();
 
             // Calculating horizontal movement
@@ -447,7 +445,6 @@ namespace Prototypes.Character
             if (CheckJumpWithBuffer() && (_isGrounded || _coyoteJumpTimer > 0))
             {
                 Jump();
-                Debug.Log("Jumped");
             }
 
 
@@ -458,10 +455,6 @@ namespace Prototypes.Character
                 
                 DoVariableJumpHeight();
                 
-                if (_velocity.y > 0)
-                {
-                    //_velocity.y *= _shortJumpMult;
-                }
             }
 
 
@@ -481,14 +474,13 @@ namespace Prototypes.Character
                 return true;
             }
 
-            _jumpBufferTimer = Mathf.Max(_jumpBufferTimer - Time.fixedDeltaTime, 0);
+            _jumpBufferTimer = Mathf.Max(0, _jumpBufferTimer - Time.fixedDeltaTime);
 
 
             if (_jumpBufferTimer > 0)
             {
                 if (_jumpButtonReleased)
                 {
-                    Debug.Log("Released jump button before buffer timer was up");
                     _jumpButtonReleased = false;
                     // Immediately apply variable jump height
                     _jumpVariableBuffer = true;
@@ -522,35 +514,8 @@ namespace Prototypes.Character
                 _velocity.y *= _shortJumpMult;
 
                 _jumpVariableBuffer = false;
-                Debug.Log("Variable jump height");
             }
         }
-
-        private void CheckJump()
-        {
-            // TODO: Come up with (more?) convenient way to disable jumping
-            if (_disableJumping) return;
-
-            bool isJumping = _jumpInput.triggered;
-
-            float newValue = _velocity.y;
-
-            // Jumping
-            if (_isGrounded && isJumping)
-            {
-                // This way, the character jumps exactly [jumpHeight] units high
-                newValue = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-            }
-
-            // Variable jump height
-            if (_jumpInput.WasReleasedThisFrame() && _velocity.y > 0)
-            {
-                newValue = _velocity.y * _shortJumpMult;
-            }
-
-            _velocity.y = newValue;
-        }
-
 
 
         private void ApplyGravity()
