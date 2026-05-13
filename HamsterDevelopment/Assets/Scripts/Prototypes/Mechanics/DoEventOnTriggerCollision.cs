@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DoEventOnTriggerCollision : MonoBehaviour
@@ -55,7 +56,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
         {
             if (onButtonInteraction)
             {
-                if (Input.GetKeyUp(buttonToUse))
+                if (Input.GetKeyUp(buttonToUse) || InputSystem.actions["Interact"].triggered)
                 {
                     onCollisionEvents?.Invoke();
                 }

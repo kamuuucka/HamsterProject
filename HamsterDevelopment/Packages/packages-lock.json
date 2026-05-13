@@ -7,14 +7,14 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "998bf300cd676f79f1636324d39caf7641fabd3c"
+      "hash": "afba2388773b7eeb9fec8ae9841c6db34969a54b"
     },
     "com.kamuuucka.hierarchy-tool": {
       "version": "https://github.com/kamuuucka/com.kamuuucka.hierarchy-tool.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2d572812ecb31e76377bc9383173a7b8cb868eea"
+      "hash": "2d038e9653143aa87f92f3d834ef88c4a768b90c"
     },
     "com.unity.burst": {
       "version": "1.8.25",

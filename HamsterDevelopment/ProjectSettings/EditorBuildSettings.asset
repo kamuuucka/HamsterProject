@@ -21,5 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiSceneTest/FakeMainMenu.unity
     guid: 99622c7cec4c307488b1e4ff3307469e
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 2d261f43b24a07d44a88e800f5a42598, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
