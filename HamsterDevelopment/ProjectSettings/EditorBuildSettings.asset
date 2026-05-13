@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Scenes/MultiSceneTest/FakeEnv.unity
+    guid: 64f5f59459b1d6b4da05f06a43c38227
+  - enabled: 1
+    path: Assets/Scenes/MultiSceneTest/FakeLoadingScreen.unity
+    guid: 2ffdf81b84a3a33498b46d1fd506b10e
+  - enabled: 1
+    path: Assets/Scenes/MultiSceneTest/FakeLogic.unity
+    guid: bcb096232b9d65e4ba1287c9653c988c
+  - enabled: 1
+    path: Assets/Scenes/MultiSceneTest/FakeMainMenu.unity
+    guid: 99622c7cec4c307488b1e4ff3307469e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2d261f43b24a07d44a88e800f5a42598, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}

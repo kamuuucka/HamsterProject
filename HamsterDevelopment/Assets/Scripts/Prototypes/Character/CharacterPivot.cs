@@ -37,6 +37,17 @@ public class CharacterPivot : MonoBehaviour
             return result;
         }
     }
+    [ReadOnly]
+    public Vector3 PivotRight
+    {
+        get
+        {
+            Vector3 euler = _pivotTransform.rotation.eulerAngles;
+            euler.x = 0;
+            var result = Quaternion.Euler(euler) * Vector3.right;
+            return result;
+        }
+    }
 
     [ReadOnly] public bool EnableCameraMovement = true;
     
@@ -53,21 +64,16 @@ public class CharacterPivot : MonoBehaviour
 
     private void Update()
     {
-        if (!_useActionAsset && _inputAction.enabled)
+        if ((!_useActionAsset && _inputAction.enabled) || (_useActionAsset && _inputActionAsset.enabled ))
         {
-            Vector2 delta = _inputAction.ReadValue<Vector2>();
-            delta *= Time.deltaTime * _sensitivity;
+            Vector2 delta = _useActionAsset
+                ? _inputActionAsset.FindAction("Look", true).ReadValue<Vector2>()
+                : _inputAction.ReadValue<Vector2>(); delta *= Time.deltaTime * _sensitivity;
             _yaw += _invertXAxis ? delta.x : -delta.x;
            
             _pitch += _invertYAxis ? delta.y : -delta.y;
             _pitch = Mathf.Clamp(_pitch, _lowestAngle, _highestAngle);
-            _pivotTransform.localRotation = Quaternion.Euler(_pitch, _yaw, _roll);
-            
-            //pivotTransform.Rotate(pivotTransform.right, _invertYAxis ? delta.y : -delta.y, Space.World);
-            //float xAngle = Mathf.Clamp(pivotTransform.rotation.eulerAngles.x, lowestAngle, highestAngle);
-            //Debug.Log($"{gameObject.name} Xangle after clamp: {xAngle.ToString("F2")} Rotation Euler: {pivotTransform.rotation.eulerAngles.x.ToString("F2")}. Rotation: {pivotTransform.rotation.x.ToString("F2")}");
-            //pivotTransform.rotation = Quaternion.Euler(xAngle, pivotTransform.rotation.eulerAngles.y, 0);
-            //pivotTransform.localRotation = Quaternion.Euler(pivotTransform.rotation.eulerAngles.x, pivotTransform.rotation.eulerAngles.y, 0);
+            _pivotTransform.localRotation = Quaternion.Euler(_pitch, _yaw, _roll); 
         }
     }
 

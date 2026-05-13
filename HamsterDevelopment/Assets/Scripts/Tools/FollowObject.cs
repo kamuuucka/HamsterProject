@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Simple follow script becuase sometimes making an object a child inherits other transforms you dont want to have (rotation).
+/// </summary>
 public class FollowObject : MonoBehaviour
 {
     public bool Follow = true;
