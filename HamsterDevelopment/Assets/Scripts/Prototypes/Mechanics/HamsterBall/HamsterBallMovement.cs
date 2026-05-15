@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class HamsterBallMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
+    public bool AllowMovement = true;
     [SerializeField] private float _speed = 10;
     [SerializeField, Tooltip("The threshold required to apply your turn speed. This is for a dot product see how to use it:\n<b>falstad.com/dotproduct/</b>\nConsider the red line the direction of your ball and the blue line the input.")] 
     private float _turnThreshold = -0.2f;
@@ -46,6 +47,21 @@ public class HamsterBallMovement : MonoBehaviour
         }
     }
 
+    public void SetPivotToDirection(Vector3 direction)
+    {
+        _characterPivot.SetPivotForward(direction);
+    }
+    
+    public void HardSetPivot(Vector3 pivot)
+    {
+        _characterPivot.EnableCameraMovement = false;
+        _characterPivot.SetPivotForward(pivot);
+    }
+
+    public void ReleaseHardPivot()
+    {
+        _characterPivot.EnableCameraMovement = true;
+    }
     private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -59,12 +75,12 @@ public class HamsterBallMovement : MonoBehaviour
             _inputActionAsset.FindAction("Look").Enable();
         }
             
-            
     }
 
+    
     private void Jump(InputAction.CallbackContext obj)
     {
-        if(!_canJump) return;
+        if(!_canJump || !AllowMovement) return;
         
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
@@ -78,6 +94,12 @@ public class HamsterBallMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!AllowMovement)
+        {
+            _rigidbody.linearVelocity = Vector3.zero;
+            return;
+        }
+        
         if ((!_useActionAsset && _inputAction.enabled) || (_useActionAsset && _inputActionAsset.enabled))
         {
            //Get your input direction 

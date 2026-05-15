@@ -9,7 +9,8 @@ public class BreakableObjectByVelocity : MonoBehaviour
     [SerializeField] private GameObject _mainWall;
     [SerializeField] private Collider _colliders;
     private EventBusPublisher publisher;
-
+    private bool broken = false;
+    
     private void OnEnable()
     {
         publisher = GetComponent<EventBusPublisher>();
@@ -17,6 +18,7 @@ public class BreakableObjectByVelocity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(broken) return;
         //Confirm other is player and ball mode
         var hb = other.GetComponent<HamsterBallMovement>();
         if (hb != null)
@@ -27,10 +29,12 @@ public class BreakableObjectByVelocity : MonoBehaviour
                 $"{gameObject.name}, {this.name}: Comparing velocity; Player speed:{speed}. Threshold: {VelocityRequiredToBreak}");
             if (speed > VelocityRequiredToBreak)
             {
+                _colliders.enabled = false;
                 _debris?.SetActive(true);
                 _mainWall?.SetActive(false);
-                _colliders.enabled = false;
+                
                 publisher?.PublishEvent();
+                broken = true;
             }   
 
 
