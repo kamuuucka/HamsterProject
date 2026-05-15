@@ -84,7 +84,7 @@ public class CharacterPivot : MonoBehaviour
                 : _inputAction.ReadValue<Vector2>(); 
             
             _smoothDelta = Vector2.Lerp(_smoothDelta, delta, Time.deltaTime * _smoothSpeed);
-            delta = _smoothDelta * _sensitivity;
+            delta = _smoothDelta * _sensitivity * Time.deltaTime;
             
             _yaw += _invertXAxis ? delta.x : -delta.x;
             _yaw = Mathf.Repeat(_yaw, 360f);

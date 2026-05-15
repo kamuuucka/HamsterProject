@@ -478,6 +478,8 @@ MonoBehaviour:
   pivot: {fileID: 1395173246}
   useSelfTransform: 1
   forward: {x: 0, y: 0, z: 0}
+  delayPivot: 0
+  delayTime: 1
   SetPivot: 1
   activateOnEnable: 1
 --- !u!1 &148041541
@@ -8905,6 +8907,7 @@ MonoBehaviour:
   _lowestAngle: -30
   _highestAngle: 60
   _hideAndLockCursor: 1
+  _smoothSpeed: 12
   _useActionAsset: 1
   _inputActionAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   _inputAction:

@@ -14,6 +14,7 @@ public class AttentionGrabber : MonoBehaviour
     [SerializeField, ConditionalField(nameof(hardCut))]
     private CinemachineVirtualCameraBase cameraToCutTo;
     
+    [ButtonMethod]
     public void GrabAttention()
     {
         StartCoroutine(StartSwitch());
