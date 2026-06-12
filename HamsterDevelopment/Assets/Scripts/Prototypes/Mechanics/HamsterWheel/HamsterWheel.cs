@@ -1,3 +1,4 @@
+using MyBox;
 using Prototypes.Character;
 using UnityEngine;
 
@@ -16,6 +17,14 @@ namespace Prototypes.Mechanics.HamsterWheel
         private Vector3 _lastKnownPosition;
         private Quaternion _lastKnownRotation;
 
+
+        [SerializeField, ReadOnly] private bool gameStarted = false;
+
+        [SerializeField] private Transform wheelTransform;
+        
+        
+        
+        
         /// <summary>
         /// Attaches the object with the CharacterMovement script to the AttachPoint.
         /// </summary>
@@ -34,6 +43,21 @@ namespace Prototypes.Mechanics.HamsterWheel
             
             player.GetCharacterController().enabled = false;
         }
+
+        
+        
+        
+
+        public void StartGame()
+        {
+            gameStarted = true;
+        }
+
+        public void EndGame()
+        {
+            gameStarted = false;
+        }
+        
 
         /// <summary>
         /// Detaches teh object with the CharacterMovement script from the AttachPoint.
