@@ -15344,7 +15344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -15357,11 +15357,15 @@ PrefabInstance:
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -15372,19 +15376,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
+      value: GetDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
+      value: GetObjectToTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TeleportToDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -15401,6 +15409,10 @@ PrefabInstance:
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7217351181377878595, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -16700,7 +16712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -16711,13 +16723,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -16728,19 +16748,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
+      value: GetDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
+      value: GetObjectToTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TeleportToDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -16751,12 +16775,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1193311276}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7217351181377878595, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -16978,9 +17010,9 @@ MonoBehaviour:
   onCollisionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: SetDestination
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetDestination
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1594388809}
@@ -16990,9 +17022,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: Teleport
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetObjectToTeleport
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1193311276}
@@ -17002,11 +17034,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: TeleportToDestination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   collidingTags:
   - Player
   onButtonInteraction: 0
   buttonToUse: 101
-  isDebug: 1
+  isDebug: 0
 --- !u!1 &384660170
 GameObject:
   m_ObjectHideFlags: 0
@@ -27250,9 +27294,9 @@ MonoBehaviour:
   onCollisionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: SetDestination
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetDestination
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1671301893}
@@ -27262,9 +27306,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: Teleport
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetObjectToTeleport
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1193311276}
@@ -27274,11 +27318,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: TeleportToDestination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   collidingTags:
   - Player
   onButtonInteraction: 0
   buttonToUse: 101
-  isDebug: 1
+  isDebug: 0
 --- !u!1 &656827342
 GameObject:
   m_ObjectHideFlags: 0
@@ -31331,9 +31387,9 @@ MonoBehaviour:
   onCollisionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: SetDestination
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetDestination
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 990140180}
@@ -31343,9 +31399,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: Teleport
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetObjectToTeleport
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1193311276}
@@ -31355,11 +31411,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: TeleportToDestination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   collidingTags:
   - Player
   onButtonInteraction: 0
   buttonToUse: 101
-  isDebug: 1
+  isDebug: 0
 --- !u!4 &746622905
 Transform:
   m_ObjectHideFlags: 0
@@ -33709,7 +33777,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4494681914051749764, guid: 03da7671c58a84372aed1d4c379db56b, type: 3}
   m_PrefabInstance: {fileID: 1716063979763351145}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1205757412}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e1134a69613a41d6b8f9e69cf6a4ceb, type: 3}
@@ -39403,9 +39471,9 @@ MonoBehaviour:
   onCollisionEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: SetDestination
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetDestination
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 498981704}
@@ -39415,9 +39483,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 796525048}
-        m_TargetAssemblyTypeName: Teleportation, Assembly-CSharp
-        m_MethodName: Teleport
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: GetObjectToTeleport
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1193311276}
@@ -39427,11 +39495,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1205757414}
+        m_TargetAssemblyTypeName: HamsterTube, Assembly-CSharp
+        m_MethodName: TeleportToDestination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   collidingTags:
   - Player
   onButtonInteraction: 0
   buttonToUse: 101
-  isDebug: 1
+  isDebug: 0
 --- !u!1 &924794253
 GameObject:
   m_ObjectHideFlags: 0
@@ -52230,6 +52310,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204924130}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1205757412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5930242489888527160, guid: 03da7671c58a84372aed1d4c379db56b, type: 3}
+  m_PrefabInstance: {fileID: 1716063979763351145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1205757414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205757412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a99294165174e2682afc399b80e317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HamsterTube
+  isDebug: 0
 --- !u!1 &1211938635
 GameObject:
   m_ObjectHideFlags: 0
@@ -65613,6 +65711,38 @@ MonoBehaviour:
   showStepHeight: 0
   showStepDepth: 0
   displayText: {fileID: 1466968666}
+--- !u!1 &1534936183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534936184}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1534936184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534936183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1995003181}
+  m_Father: {fileID: 2083364387}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537401859
 GameObject:
   m_ObjectHideFlags: 0
@@ -88956,7 +89086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -88967,13 +89097,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -88984,19 +89122,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
+      value: GetDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
+      value: GetObjectToTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TeleportToDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -89007,12 +89149,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1193311276}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7217351181377878595, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -89591,6 +89741,119 @@ Transform:
   - {fileID: 1790553920}
   m_Father: {fileID: 439684558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1995003180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1995003181}
+  - component: {fileID: 1995003184}
+  - component: {fileID: 1995003183}
+  - component: {fileID: 1995003182}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1995003181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995003180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.375, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.375, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1534936184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1995003182
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995003180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &1995003183
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995003180}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1995003184
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995003180}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1997361387
 GameObject:
   m_ObjectHideFlags: 0
@@ -93781,6 +94044,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079885754}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2083364384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2083364387}
+  - component: {fileID: 2083364386}
+  - component: {fileID: 2083364385}
+  m_Layer: 0
+  m_Name: Spring
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2083364385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083364384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.3, z: 0.5}
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &2083364386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083364384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9031f3ceaf346ec448e02dae636b0478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spring
+  minBounceHeight: 1.59
+  maxVelocityBounce: 3.51
+  maxBounceHeight: 3.78
+  clampMinValueDontAdd: 0
+  horVelMult: 0
+  boxCollider: {fileID: 2083364385}
+--- !u!4 &2083364387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083364384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 0, z: -16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1534936184}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2083862375
 GameObject:
   m_ObjectHideFlags: 0
@@ -96752,56 +97088,12 @@ Transform:
   - {fileID: 1353781552}
   m_Father: {fileID: 1733922202}
   m_LocalEulerAnglesHint: {x: -25, y: 0, z: 0}
---- !u!1 &2141378080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3635379351367577729, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
-  m_PrefabInstance: {fileID: 5088430260101378501}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2141378081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141378080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885f709ce961e3045a758b43d048f95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterPivot
-  _sensitivity: 25
-  _invertYAxis: 0
-  _invertXAxis: 1
-  _lowestAngle: -30
-  _highestAngle: 60
-  _hideAndLockCursor: 1
-  _useActionAsset: 0
-  _inputActionAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
-  _inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: Delta
-    m_Id: 588163ff-d95d-4cf7-a2a3-8d704dce7890
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: dff04265-a698-4a8d-b849-b55f2ea75c9b
-      m_Path: <Mouse>/delta
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    m_Flags: 0
-  _pivotTransform: {fileID: 1410699937}
-  EnableCameraMovement: 1
 --- !u!114 &2141378084 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7252408302187967751, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
   m_PrefabInstance: {fileID: 5088430260101378501}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141378080}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 215d0a5aa4da79f478a4786ab410af31, type: 3}
@@ -97139,7 +97431,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5930242489888527160, guid: 03da7671c58a84372aed1d4c379db56b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1205757414}
   m_SourcePrefab: {fileID: 100100000, guid: 03da7671c58a84372aed1d4c379db56b, type: 3}
 --- !u!1001 &4200707243905990909
 PrefabInstance:
@@ -97207,7 +97502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -97218,13 +97513,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 796525048}
+      objectReference: {fileID: 1205757414}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1205757414}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -97235,19 +97538,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDestination
+      value: GetDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Teleport
+      value: GetObjectToTeleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TeleportToDestination
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Teleportation, Assembly-CSharp
+      value: HamsterTube, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -97258,12 +97565,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1193311276}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432013651476207561, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
+      propertyPath: onCollisionEvents.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7217351181377878595, guid: 5f2939a159bfc4294bb41dbd794ec1bb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -97399,14 +97714,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hamster Character
       objectReference: {fileID: 0}
-    - target: {fileID: 3635379351367577729, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4685840919143810592, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4937743725838097915, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: isDebug
       value: 0
@@ -97519,6 +97826,10 @@ PrefabInstance:
       propertyPath: onCharacterDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5373458503076059108, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
+      propertyPath: _pivotTransform
+      value: 
+      objectReference: {fileID: 1410699937}
     - target: {fileID: 7252408302187967751, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
       propertyPath: useRawInputs
       value: 1
@@ -97566,10 +97877,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3635379351367577729, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2141378081}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e209c5e9406dc49bb976cdbae937f672, type: 3}
 --- !u!1001 &7694895859323839978
 PrefabInstance:
@@ -97651,3 +97959,4 @@ SceneRoots:
   - {fileID: 1106803404}
   - {fileID: 661236051}
   - {fileID: 1266869051}
+  - {fileID: 2083364387}

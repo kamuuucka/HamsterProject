@@ -308,7 +308,7 @@ namespace Prototypes.Character
 
         private void CheckGrounded()
         {
-            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask, QueryTriggerInteraction.Ignore);
 
             if (_isGrounded)
             {
@@ -751,5 +751,51 @@ namespace Prototypes.Character
         {
             return _controller;
         }
+
+
+
+
+        public void DoSpringJump(float pMinHeight, float pVelHeight, float pMaxHeight, bool pClampMinHeight, float pHorVelMult, float pHorInputBoost, float pMaxHorVelOutput)
+        {
+            if (_velocity.y > 0) return;
+
+            float bounceHeight = Mathf.Min(pVelHeight * -_velocity.y / _terminalVelocity, pMaxHeight);
+
+            if (pClampMinHeight)
+            {
+                if (bounceHeight < pMinHeight) bounceHeight = pMinHeight;
+            }
+            else
+            {
+                bounceHeight = Mathf.Min(pMinHeight + bounceHeight, pMaxHeight);
+            }
+
+            _velocity.y = Mathf.Sqrt(bounceHeight * -2f * _gravity);
+
+
+
+
+
+
+            Vector2 horVel = new Vector2(_velocity.x, _velocity.z);
+
+            horVel *= pHorVelMult;
+
+            Vector2 inputBoost = _moveInput * pHorInputBoost;
+
+            horVel += inputBoost;
+
+            if (pMaxHorVelOutput > 0 && horVel.magnitude > pMaxHorVelOutput)
+            {
+                horVel = horVel.normalized * pMaxHorVelOutput;
+            }
+
+            _velocity.x = horVel.x;
+            _velocity.z = horVel.y;
+
+        }
+
+
+
     }
 }
