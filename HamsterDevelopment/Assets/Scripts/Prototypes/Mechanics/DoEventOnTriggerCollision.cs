@@ -56,7 +56,7 @@ public class DoEventOnTriggerCollision : MonoBehaviour
         {
             if (onButtonInteraction)
             {
-                if (Input.GetKeyUp(buttonToUse) || InputSystem.actions["Interact"].triggered)
+                if (Input.GetKeyUp(buttonToUse) || InputSystem.actions["Interact"].triggered )
                 {
                     onCollisionEvents?.Invoke();
                 }
