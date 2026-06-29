@@ -308,7 +308,7 @@ namespace Prototypes.Character
 
         private void CheckGrounded()
         {
-            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask, QueryTriggerInteraction.Ignore);
 
             if (_isGrounded)
             {
