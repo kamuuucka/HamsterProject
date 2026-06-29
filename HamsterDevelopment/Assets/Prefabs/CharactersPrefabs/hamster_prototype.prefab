@@ -209,7 +209,7 @@ MonoBehaviour:
   groundSphereRadius: 0.5
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65
   isDebug: 0
   showGroundSphere: 0
   displayActualValues: 0
