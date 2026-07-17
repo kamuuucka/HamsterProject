@@ -1,7 +1,10 @@
 using System;
 using UnityEngine;
 
-public class WheelMover : MonoBehaviour
+/// <summary>
+/// A very simple Rotator Script. 
+/// </summary>
+public class WheelRotater : MonoBehaviour
 {
     [SerializeField] private float baseSpeed = 2;
     
