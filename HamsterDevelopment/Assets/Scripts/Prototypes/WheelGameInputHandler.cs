@@ -12,10 +12,7 @@ public class WheelGameInputHandler : MonoBehaviour
     private bool readingRight = false;
     private bool readingMid = false;
 
-    [SerializeField] private float baseSpeed = 2;
-    
-    [SerializeField] private Transform wheelRoot;
-    [SerializeField] private float spinSpeed;
+    [SerializeField] private WheelMover wheelMover;
 
     [SerializeField] private int scoreToBeat = 2;
     private Animator animator;
@@ -41,6 +38,7 @@ public class WheelGameInputHandler : MonoBehaviour
         if (isFinished) return;
         animator.SetBool("Start", true);
         animator.SetBool("Restart", false);
+        wheelMover.StartSpinning();
     }
     
     private void OnRightPerformed(InputAction.CallbackContext obj)
@@ -50,6 +48,11 @@ public class WheelGameInputHandler : MonoBehaviour
             Debug.Log("Right peformed");
             StopReadRightInput();
             score++;
+            wheelMover.SpeedUp();
+        }
+        else
+        {
+            wheelMover.SpeedDown();
         }
     }
 
@@ -60,6 +63,10 @@ public class WheelGameInputHandler : MonoBehaviour
             Debug.Log("Mid peformed");
             StopReadMiddleInput();
             score++;
+            wheelMover.SpeedUp();
+        }else
+        {
+            wheelMover.SpeedDown();
         }
     }
 
@@ -70,6 +77,10 @@ public class WheelGameInputHandler : MonoBehaviour
             Debug.Log("Left peformed");
             StopReadLeftInput();
             score++;
+            wheelMover.SpeedUp();
+        }else
+        {
+            wheelMover.SpeedDown();
         }
     }
 
@@ -100,12 +111,7 @@ public class WheelGameInputHandler : MonoBehaviour
     {
         readingMid = false;
     }
-
-    private void FixedUpdate()
-    {
-        wheelRoot.Rotate(transform.forward, baseSpeed + spinSpeed * score);
-    }
-
+    
     public void EndMinigame()
     {
         Debug.Log("End Minigame. Score: "  + score);
@@ -124,6 +130,7 @@ public class WheelGameInputHandler : MonoBehaviour
             animator.SetBool("Start", false);
             animator.SetBool("Restart", true);
             gameObject.SetActive(false);
+            wheelMover.Stop();
         }
     }
 }

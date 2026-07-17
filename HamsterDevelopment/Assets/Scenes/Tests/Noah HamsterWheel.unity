@@ -10904,9 +10904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   inputActionAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
-  baseSpeed: -2
-  wheelRoot: {fileID: 3567272498935894368}
-  spinSpeed: -5
+  wheelMover: {fileID: 8651009184198956234}
   scoreToBeat: 2
   OnPassed:
     m_PersistentCalls:
@@ -11042,6 +11040,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CharacterPivot, Assembly-CSharp
         m_MethodName: SetEnableCameraMovement
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8651009184198956234}
+        m_TargetAssemblyTypeName: WheelMover, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -24016,6 +24026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3567272498935894368}
+  - component: {fileID: 8651009184198956234}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -24023,6 +24034,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8651009184198956234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651009184198956233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2738f2a5dc450c94f882f18f0a26c414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  baseSpeed: -2
+  spinSpeed: -5
 --- !u!54 &8691190864732014977
 Rigidbody:
   m_ObjectHideFlags: 0
