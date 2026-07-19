@@ -1,11 +1,20 @@
 {
   "dependencies": {
+    "com.domybest.mybox": {
+      "version": "https://github.com/Deadcows/MyBox.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "afba2388773b7eeb9fec8ae9841c6db34969a54b"
+    },
     "com.kamuuucka.hierarchy-tool": {
       "version": "https://github.com/kamuuucka/com.kamuuucka.hierarchy-tool.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2d572812ecb31e76377bc9383173a7b8cb868eea"
+      "hash": "2d038e9653143aa87f92f3d834ef88c4a768b90c"
     },
     "com.unity.burst": {
       "version": "1.8.25",
@@ -88,6 +97,15 @@
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.14.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

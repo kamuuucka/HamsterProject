@@ -19,3 +19,6 @@ MonoBehaviour:
   - prefix: ---
     backgroundColor: {r: 0.6139602, g: 0.7830189, b: 0.49123356, a: 1}
     textColor: {r: 0, g: 0, b: 0, a: 1}
+  - prefix: -=-
+    backgroundColor: {r: 0.64386797, g: 0.8584906, b: 0.83688325, a: 1}
+    textColor: {r: 0, g: 0, b: 0, a: 1}

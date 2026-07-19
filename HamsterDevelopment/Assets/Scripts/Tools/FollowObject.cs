@@ -12,7 +12,7 @@ public class FollowObject : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private bool followRotation;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Follow)
         {
