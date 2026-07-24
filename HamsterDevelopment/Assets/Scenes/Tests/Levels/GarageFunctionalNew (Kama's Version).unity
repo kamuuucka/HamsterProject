@@ -469,6 +469,10 @@ GameObject:
   - component: {fileID: 25457943}
   - component: {fileID: 25457942}
   - component: {fileID: 25457944}
+  - component: {fileID: 25457947}
+  - component: {fileID: 25457946}
+  - component: {fileID: 25457945}
+  - component: {fileID: 25457948}
   m_Layer: 0
   m_Name: Camera_Point LEVEL PAN
   m_TagString: Untagged
@@ -502,8 +506,8 @@ Transform:
   m_GameObject: {fileID: 25457941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.18, y: 17.44, z: -89.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -11.18, y: 17.44, z: -89.63}
+  m_LocalScale: {x: 2.9976, y: 2.9976, z: 2.9976}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -522,6 +526,225 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DebugLogText
   text: 'NOAH TEXT: Turn off the old active camera and on  "Dolly Cam Level Pan"
     and "Dolly Cart" Consider also disabling movement on the player to be sure'
+--- !u!114 &25457945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25457941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76443b0c5b813ec4dbfeffdb7359b26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaitSecondsSendEvent
+  duration: 42
+  StartOnEnable: 0
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1572340704}
+        m_TargetAssemblyTypeName: CameraSwitchHandler, Assembly-CSharp
+        m_MethodName: SwitchCamera
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1739168415}
+          m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineVirtualCameraBase,
+            Unity.Cinemachine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1680528716}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1550260534}
+        m_TargetAssemblyTypeName: CharacterPivot, Assembly-CSharp
+        m_MethodName: SetEnableCameraMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1322967866}
+        m_TargetAssemblyTypeName: Prototypes.Character.CharacterMovement, Assembly-CSharp
+        m_MethodName: SetEnableMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 25457948}
+        m_TargetAssemblyTypeName: UnityEngine.BoxCollider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 25457946}
+        m_TargetAssemblyTypeName: DoEventOnTriggerCollision, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &25457946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25457941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18144a75017184d88a0012949756b965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoEventOnTriggerCollision
+  onCollisionEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1572340704}
+        m_TargetAssemblyTypeName: CameraSwitchHandler, Assembly-CSharp
+        m_MethodName: SwitchCamera
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1815240627}
+          m_ObjectArgumentAssemblyTypeName: Unity.Cinemachine.CinemachineVirtualCameraBase,
+            Unity.Cinemachine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1322967866}
+        m_TargetAssemblyTypeName: Prototypes.Character.CharacterMovement, Assembly-CSharp
+        m_MethodName: SetEnableMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1550260534}
+        m_TargetAssemblyTypeName: CharacterPivot, Assembly-CSharp
+        m_MethodName: SetEnableCameraMovement
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1680528716}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 25457945}
+        m_TargetAssemblyTypeName: WaitSecondsSendEvent, Assembly-CSharp
+        m_MethodName: Wait
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  collidingTags:
+  - Player
+  onButtonInteraction: 0
+  buttonToUse: 101
+  isDebug: 0
+--- !u!54 &25457947
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25457941}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &25457948
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25457941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &41902510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,7 +4016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430252495}
   m_Layer: 0
-  m_Name: ===CAMERA
+  m_Name: ===CAMERA POINTS
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11794,6 +12017,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2261feffb463e8f429c4867bfe5d4059, type: 3}
+--- !u!1 &1407833794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407833795}
+  m_Layer: 0
+  m_Name: ===Unsorted
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407833795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407833794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1420462862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21491,7 +21745,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   hardCut: 0
-  cameraToCutTo: {fileID: 0}
+  cameraToCutTo: {fileID: 16184193}
 --- !u!1001 &7844216021824433614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21959,6 +22213,14 @@ SceneRoots:
   - {fileID: 16184194}
   - {fileID: 1739168416}
   - {fileID: 399352070}
+  - {fileID: 430252495}
+  - {fileID: 374463752}
+  - {fileID: 25457943}
+  - {fileID: 1850563159}
+  - {fileID: 145677400}
+  - {fileID: 1735201967}
+  - {fileID: 1896701777}
+  - {fileID: 47647702}
   - {fileID: 837093045}
   - {fileID: 8373374272925023360}
   - {fileID: 8598954943220353121}
@@ -22127,14 +22389,7 @@ SceneRoots:
   - {fileID: 597447062}
   - {fileID: 1163715155}
   - {fileID: 1031738963}
-  - {fileID: 430252495}
-  - {fileID: 374463752}
-  - {fileID: 25457943}
-  - {fileID: 1850563159}
-  - {fileID: 145677400}
-  - {fileID: 1735201967}
-  - {fileID: 1896701777}
-  - {fileID: 47647702}
+  - {fileID: 1407833795}
   - {fileID: 1306293898}
   - {fileID: 1812862252}
   - {fileID: 281960351}

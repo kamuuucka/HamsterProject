@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -8,6 +9,19 @@ public class CameraSwitchHandler : MonoBehaviour
     [SerializeField] private CinemachineVirtualCameraBase attentionCamera;
 
     private CinemachineVirtualCameraBase currentActiveCamera;
+
+
+    private void Start()
+    {
+        FindCurrentActiveCamera();
+    }
+
+    private void FindCurrentActiveCamera()
+    {
+       var cameras = FindObjectsOfType<CinemachineVirtualCameraBase>();
+       currentActiveCamera = cameras.FirstOrDefault(c => c.IsLive);
+    }
+
     public void GrabAttention(Transform target)
     {
        attentionCamera.Follow = target;
