@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2419850640361089454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87987094374483988}
   - component: {fileID: 3319752762048304181}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Death Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7252408302187967751}
   - component: {fileID: 4937743725838097915}
   - component: {fileID: 666625404371444859}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hamster_prototype
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
   groundSphereRadius: 0.5
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65
   isDebug: 0
   showGroundSphere: 0
   displayActualValues: 0
@@ -229,13 +229,11 @@ MonoBehaviour:
   onCharacterDeath:
     m_PersistentCalls:
       m_Calls: []
+  mostRecentSpawnPoint: {fileID: 0}
   deathLayers:
     serializedVersion: 2
     m_Bits: 0
-  deadlyHeight: -1.92
-  dieByHeight: 1
   isDebug: 0
-  showDeadlyHeight: 0
 --- !u!54 &666625404371444859
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -275,7 +273,7 @@ GameObject:
   - component: {fileID: 8309023208494314330}
   - component: {fileID: 6560343705829836610}
   - component: {fileID: 1229978740834303806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9096839146755933820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +415,7 @@ GameObject:
   - component: {fileID: 4873547666945549323}
   - component: {fileID: 6683409693394388899}
   - component: {fileID: 7408963031845930290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +504,7 @@ GameObject:
   - component: {fileID: 5147228819739886395}
   - component: {fileID: 7169469059201202239}
   - component: {fileID: 504706399532166667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +593,7 @@ GameObject:
   - component: {fileID: 4497969856692378492}
   - component: {fileID: 3618885049621100515}
   - component: {fileID: 601038034053407013}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4791204475986938984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

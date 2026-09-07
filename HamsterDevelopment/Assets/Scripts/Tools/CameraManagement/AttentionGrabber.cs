@@ -14,6 +14,11 @@ public class AttentionGrabber : MonoBehaviour
     [SerializeField, ConditionalField(nameof(hardCut))]
     private CinemachineVirtualCameraBase cameraToCutTo;
     
+    [SerializeField] private bool setFOV = false;
+    [SerializeField, ConditionalField(nameof(setFOV))]
+    private float cameraFOV = 30;
+    
+    [ButtonMethod]
     public void GrabAttention()
     {
         StartCoroutine(StartSwitch());
@@ -21,13 +26,17 @@ public class AttentionGrabber : MonoBehaviour
 
     private IEnumerator StartSwitch()
     {
+        
         if (hardCut)
         {
             cameraSwitchHandler.GrabAttention(target, cameraToCutTo);
         }
         else
         {
-            cameraSwitchHandler.GrabAttention(target);
+            if(setFOV)
+                cameraSwitchHandler.GrabAttention(target, cameraFOV);
+                else
+                cameraSwitchHandler.GrabAttention(target);
         }
        
         yield return new WaitForSeconds(0.3f);

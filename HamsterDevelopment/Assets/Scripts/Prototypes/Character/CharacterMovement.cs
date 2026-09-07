@@ -47,7 +47,7 @@ namespace Prototypes.Character
         [Tooltip("Used for deciding control or acceleration. \nShould the length of the desired velocity on the chosen direction be bigger than the length of the current velocity on the chosen direction? \n This is ignored if above is true.")]
         [SerializeField][Foldout("Control or Acceleration")] private bool useVelocityDirectional;
 
-
+        
 
         #region Movement values
         [Space]
@@ -198,10 +198,8 @@ namespace Prototypes.Character
         #endregion
 
 
-        [Space]
-        [Separator("Other")]
-
-
+        [Space] [Separator("Other")] [SerializeField]
+        private bool enableMovement = true;
 
         [Header("Ground Check")]
         
@@ -273,6 +271,17 @@ namespace Prototypes.Character
 
         }
 
+        public void SetEnableMovement(bool value)
+        {
+            enableMovement = value;
+            if (!enableMovement)
+            {
+                //Movement Disabled kill velocity
+                _velocity =  Vector3.zero;
+                _moveInput  = Vector2.zero;
+            }
+        }
+        
         private void FixedUpdate()
         {
             CheckGrounded();
@@ -297,6 +306,8 @@ namespace Prototypes.Character
 
         private void CheckInputs()
         {
+            if(!enableMovement) return;
+            
             // Automatically normalizes
             _moveInput = InputSystem.actions["Move"].ReadValue<Vector2>();
             RotateInputToCamera();
@@ -308,7 +319,7 @@ namespace Prototypes.Character
 
         private void CheckGrounded()
         {
-            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask);
+            _isGrounded = Physics.CheckSphere(groundCheck.position, groundSphereRadius, groundMask, QueryTriggerInteraction.Ignore);
 
             if (_isGrounded)
             {
